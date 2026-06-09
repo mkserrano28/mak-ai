@@ -1,0 +1,630 @@
+/* UPLOAD BUTTON */
+
+
+[data-testid="stFileUploader"] section,
+[data-testid="stFileUploader"] form{
+
+    background: transparent !important;
+
+    border: none !important;
+
+    box-shadow: none !important;
+}
+
+/* BUTTON */
+
+[data-testid="stFileUploader"] button {
+
+    width: 20px !important;
+    height: 20px !important;
+
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    color: transparent !important;
+}
+
+/* HIDE BUTTON CONTENT */
+
+[data-testid="stFileUploader"] button p,
+[data-testid="stFileUploader"] button span,
+[data-testid="stFileUploader"] button small  {
+
+    display: none !important;
+}
+
+/* SHOW ONLY PAPERCLIP */
+
+[data-testid="stFileUploader"]::before  {
+
+    content: "+";
+        font-family:
+        "Segoe UI Emoji",
+        "Apple Color Emoji",
+        sans-serif;
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    width: 20px;
+
+    height: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 18px;
+
+    z-index: 9999999;
+
+    pointer-events: none;
+    margin-left:15px;
+    margin-top: 15px;
+}
+
+/* REMOVE WHITE UPLOADER BOX */
+
+[data-testid="stFileUploader"] {
+
+    position: fixed !important;
+
+    left: 50% !important;
+
+    transform: translateX(-340px) !important;
+
+    bottom: -25px !important;
+
+    width: 40px !important;
+
+    z-index: 999999 !important;
+}
+
+[data-testid="stFileUploader"] > div {
+
+    background: transparent !important;
+}
+
+[data-testid="stFileUploader"] section {
+
+    background: transparent !important;
+
+    border: none !important;
+
+    box-shadow: none !important;
+}
+
+[data-testid="stFileUploader"] form {
+
+    background: transparent !important;
+
+    border: none !important;
+}
+/* HIDE STREAMLIT FILE PREVIEW COMPLETELY */
+
+[data-testid="stFileUploaderFile"] {
+    display: none !important;
+}
+
+[data-testid="stFileUploader"] ul {
+    display: none !important;
+}
+
+[data-testid="stFileUploader"] li {
+    display: none !important;
+}
+
+[data-testid="stFileUploader"] [data-testid="stFileUploaderFile"] {
+    display: none !important;
+}
+
+/* REMOVE WHITE BOX AFTER UPLOAD */
+
+[data-testid="stFileUploader"] section > div:last-child {
+    display: none !important;
+}
+[data-testid="stButton"] button {
+    min-height: 32px !important;
+}
+[data-testid="stFileUploader"] small
+{
+
+    display: none !important;
+}
+.attachment-bar {
+
+    position: fixed !important;
+
+    bottom: 78px !important;
+
+    left: 50% !important;
+
+    transform: translateX(-50%) !important;
+
+    width: min(700px, 80vw) !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+}
+.attachment-files {
+
+    flex: 1;
+}
+
+.attachment-x {
+    font-size: 18px;
+    margin-left: 12px;
+    opacity: .7;
+}
+
+.attachment-close:hover {
+
+    opacity: 1;
+}
+/* HIDE STREAMLIT FILE PREVIEW */
+.chat-image {
+    max-width: 260px;
+    border-radius: 18px;
+    display: block;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+div[data-testid="stButton"]:has(
+button[key="remove_attachment"]
+){
+    position: fixed !important;
+
+    bottom: 78px !important;
+    margin-right: 500px;
+
+    z-index: 999999;
+
+    width: 40px !important;
+}
+
+.remove-btn-wrapper {
+    position: fixed !important;
+
+    bottom: 86px !important;
+
+    z-index: 999999 !important;
+}
+
+/* REMOVE BUTTON */
+
+div[data-testid="stHorizontalBlock"] {
+    position: fixed !important;
+
+    bottom: 85px !important;
+
+    right: 40px !important;
+
+    left: auto !important;
+
+    width: auto !important;
+
+    transform: none !important;
+
+    z-index: 999999 !important;
+}
+
+div[data-testid="stHorizontalBlock"] button {
+    width: 32px !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+}
+[data-testid="column"] button {
+
+    min-height: 34px !important;
+
+    border-radius: 10px !important;
+}
+/* COPY BUTTON POSITION */
+
+iframe[title="st_copy_to_clipboard.streamlit_copy_to_clipboard"] {
+    transform: scale(0.55) !important;
+    transform-origin: top left !important;
+
+    position: relative !important;
+
+    top: -25px !important;
+    left: -20px !important;
+
+    z-index: 9999 !important;
+}
+/* ATTACHMENT REMOVE BUTTON */
+
+div[data-testid="stButton"]:has(
+button[key="remove_attachment"]
+) button {
+
+    width: 32px !important;
+    height: 32px !important;
+
+    min-height: 32px !important;
+
+    padding: 0 !important;
+
+    border-radius: 50% !important;
+
+    text-align: center !important;
+
+    background: rgba(255,255,255,0.08) !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+}
+@media (min-width: 1200px)
+and (max-width: 1400px) {
+
+    iframe[title="st_copy_to_clipboard.streamlit_copy_to_clipboard"] {
+
+        top: -35px !important;
+    }
+
+}
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+
+    [data-testid="stChatInput"] {
+
+        left: calc(50% + 110px) !important;
+
+        transform: translateX(-50%) !important;
+    }
+
+    .attachment-bar {
+
+        width: 850px !important;
+        left: calc(50% + 120px) !important;
+
+    }
+}
+
+
+@media (max-width: 767px) {
+
+    .attachment-bar {
+
+        width: 90vw !important;
+
+        left: 50% !important;
+
+        transform: translateX(-50%) !important;
+    }
+
+    .attachment-files {
+
+        max-width: 120px !important;
+
+        overflow: hidden !important;
+
+        text-overflow: ellipsis !important;
+
+        white-space: nowrap !important;
+    }
+
+    [data-testid="stFileUploader"] {
+
+        left: 45% !important;
+
+        transform: translateX(-160px) !important;
+    }
+
+    div[data-testid="stHorizontalBlock"] {
+
+        left: 50% !important;
+
+        transform: translateX(150px) !important;
+
+        right: auto !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1366px) {
+
+    .attachment-bar {
+
+        width: min(500px, 70vw) !important;
+
+        left: 50% !important;
+
+        transform: translateX(-50%) !important;
+    }
+
+    .attachment-files {
+
+        max-width: 180px !important;
+
+        overflow: hidden !important;
+
+        text-overflow: ellipsis !important;
+
+        white-space: nowrap !important;
+    }
+
+    [data-testid="stFileUploader"] {
+
+        left: calc(50% - 260px) !important;
+
+        transform: none !important;
+    }
+
+    div[data-testid="stHorizontalBlock"] {
+
+        left: calc(50% + 180px) !important;
+
+        transform: none !important;
+    }
+}
+
+@media screen
+and (width: 1024px)
+and (height: 600px) {
+        [data-testid="stFileUploader"] {
+
+        left: calc(50% - 150px) !important;
+
+        transform: none !important;
+    }
+        [data-testid="stChatInput"] {
+
+        left: calc(50% + 150px) !important;
+
+        width: 350px;
+    }
+}
+@media screen
+and (width: 1280px)
+and (height: 800px) {
+        [data-testid="stFileUploader"] {
+
+        left: calc(50% - 150px) !important;
+
+        transform: none !important;
+    }
+        [data-testid="stChatInput"] {
+
+        left: calc(50% + 150px) !important;
+        width: 600px !important;
+
+    }
+        .attachment-bar {
+
+        width: min(500px, 70vw) !important;
+
+        left: 60% !important;
+
+        transform: translateX(-50%) !important;
+    }
+}
+@media screen
+and (width: 853px)
+and (height: 1280px) {
+
+    [data-testid="stFileUploader"] {
+        left: calc(50% - 130px) !important;
+    }
+
+    [data-testid="stChatInput"] {
+        width: 500px !important;
+        left: calc(50% + 120px) !important;
+    }
+
+    .attachment-bar {
+        width: 320px !important;
+        left: 55% !important;
+    }
+
+
+        div[data-testid="stHorizontalBlock"] {
+
+        left: calc(50% + 250px) !important;
+
+        transform: none !important;
+
+        right: auto !important;
+}
+}
+
+@media screen
+and (width: 912px)
+and (height: 1368px) {
+
+    [data-testid="stFileUploader"] {
+        left: calc(50% - 130px) !important;
+    }
+
+
+    .attachment-bar {
+        width: 320px !important;
+        left: 55% !important;
+    }
+
+        div[data-testid="stHorizontalBlock"] {
+
+        left: calc(50% + 250px) !important;
+
+        transform: none !important;
+
+        right: auto !important;
+}
+}
+
+
+@media screen
+and (width: 1024px)
+and (height: 1366px) {
+
+    [data-testid="stChatInput"] {
+
+        left: calc(50% + 150px) !important;
+        width: 600px !important;
+
+    }
+    [data-testid="stFileUploader"] {
+        left: calc(50% - 130px) !important;
+    }
+
+
+    .attachment-bar {
+        width: 320px !important;
+        left: 55% !important;
+    }
+
+        div[data-testid="stHorizontalBlock"] {
+
+        left: calc(50% + 250px) !important;
+
+        transform: none !important;
+
+        right: auto !important;
+}
+}
+@media screen
+and (width: 820px)
+and (height: 1180px) {
+
+    [data-testid="stChatInput"] {
+
+        left: calc(50% + 150px) !important;
+        width: 500px !important;
+
+    }
+    [data-testid="stFileUploader"] {
+        left: calc(50% - 100px) !important;
+    }
+
+
+    .attachment-bar {
+        width: 320px !important;
+        left: 60% !important;
+    }
+
+        div[data-testid="stHorizontalBlock"] {
+
+        left: calc(50% + 250px) !important;
+
+        transform: none !important;
+
+        right: auto !important;
+}
+}
+@media screen
+and (width: 768px)
+and (height: 1024px) {
+
+    [data-testid="stChatInput"] {
+
+        left: calc(50% + 150px) !important;
+        width: 450px !important;
+
+    }
+    [data-testid="stFileUploader"] {
+        left: calc(50% - 80px) !important;
+    }
+
+
+    .attachment-bar {
+        width: 320px !important;
+        left: 65% !important;
+    }
+
+        div[data-testid="stHorizontalBlock"] {
+
+        left: calc(50% + 250px) !important;
+
+        transform: none !important;
+
+        right: auto !important;
+}
+}
+
+@media screen
+and (width: 540px)
+and (height: 720px) {
+
+
+    [data-testid="stFileUploader"] {
+        left: calc(50% - 70px) !important;
+    }
+
+}
+
+
+/* Desktop */
+@media (min-width: 1200px) {
+
+    [data-testid="stChatInput"] {
+        width: 700px !important;
+        left: calc(50% + 100px) !important;
+    }
+
+    [data-testid="stFileUploader"] {
+        left: calc(50% + 100px) !important;
+    }
+
+    .attachment-bar {
+        width: 700px !important;
+        left: calc(50% + 100px) !important;
+    }
+
+    div[data-testid="stHorizontalBlock"] {
+        left: calc(50% + 360px) !important;
+        right: auto !important;
+    }
+        iframe[title="st_copy_to_clipboard.streamlit_copy_to_clipboard"] {
+
+        transform: scale(0.60) !important;
+
+        top: -30px !important;
+
+        left: 80px !important;
+        
+    }
+        .chat-row-user {
+
+        max-width: 900px !important;
+
+        margin: 0 auto 30px auto !important;
+
+        padding-left: 20px !important;
+
+        padding-right: 20px !important;
+    }
+}
+@media (min-width: 1600px) {
+
+    iframe[title="st_copy_to_clipboard.streamlit_copy_to_clipboard"] {
+
+        transform: scale(0.65) !important;
+
+        top: -50px !important;
+
+        left: 270px !important;
+    }
+        .chat-row-user {
+
+        max-width: 900px !important;
+
+        margin: 0 auto 30px auto !important;
+
+        padding-left: 20px !important;
+
+        padding-right: 20px !important;
+    }
+}
