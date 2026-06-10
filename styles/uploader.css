@@ -46,6 +46,9 @@
 
     position: absolute;
 
+    color: #374151 !important;
+    font-weight: 700;
+
     left: 0;
 
     top: 0;
@@ -68,7 +71,10 @@
     margin-left:15px;
     margin-top: 15px;
 }
+[data-theme="dark"] [data-testid="stFileUploader"]::before {
 
+    color: white !important;
+}
 /* REMOVE WHITE UPLOADER BOX */
 
 [data-testid="stFileUploader"] {
@@ -79,7 +85,7 @@
 
     transform: translateX(-340px) !important;
 
-    bottom: -25px !important;
+    bottom: 12px !important;
 
     width: 40px !important;
 

@@ -432,6 +432,32 @@ color: var(--sidebar-text) !important;
 
     color: white !important;
 }
+/* SIDEBAR TOGGLE */
+
+[data-testid="collapsedControl"] {
+
+    color: #374151 !important;
+
+    opacity: 1 !important;
+}
+
+[data-testid="collapsedControl"] * {
+
+    color: #374151 !important;
+
+    fill: #374151 !important;
+
+    stroke: #374151 !important;
+}
+[data-theme="dark"] [data-testid="collapsedControl"],
+[data-theme="dark"] [data-testid="collapsedControl"] * {
+
+    color: white !important;
+
+    fill: white !important;
+
+    stroke: white !important;
+}
 
 @media (width: 1024px) and (height: 600px) {
 
