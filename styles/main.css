@@ -711,6 +711,41 @@ section.main > div {
         opacity: .45;
     }
 }
+
+
+
+
+
+
+.welcome-container {
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    margin-top: 15vh;
+
+    color: var(--text-color);
+
+    animation: fadeIn .4s ease;
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 /* Screen responsive */
 
 @media (max-width: 1024px) {

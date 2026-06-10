@@ -170,6 +170,16 @@ if st.session_state.current_chat:
 render_chat(messages)
 scroll_to_bottom()
 
+if not messages:
+
+    st.markdown(
+        """
+        <div class="welcome-container">
+            <h4> How can I help you today?</h4>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 prompt = handle_uploads(
     embedding_model
@@ -281,9 +291,7 @@ if prompt:
 
         if needs_search:
 
-            with st.spinner("🌐 Searching the web..."):
-
-                web_results = search_web(prompt)
+            web_results = search_web(prompt)
 
             web_context = "\n\n".join([
                 f"Title: {r['title']}\n"
