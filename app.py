@@ -110,10 +110,16 @@ theme_css = f"""
 
     --text-color: {text};
 
+    --border-color: {
+        "rgba(255,255,255,0.12)"
+        if st.session_state.theme == "dark"
+        else "#d1d5db"
+    };
+
     --ai-message-bg: {
         "rgba(255,255,255,0.06)"
         if st.session_state.theme == "dark"
-        else "rgba(255,255,255,0.85)"
+        else "#ffffff"
     };
 
     --placeholder-color: {
