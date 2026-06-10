@@ -422,6 +422,16 @@ color: var(--sidebar-text) !important;
         margin-bottom: 20px !important;
     }
 
+[data-testid="collapsedControl"] svg {
+
+    color: #374151 !important;
+
+    opacity: 1 !important;
+}
+[data-theme="dark"] [data-testid="collapsedControl"] svg {
+
+    color: white !important;
+}
 
 @media (width: 1024px) and (height: 600px) {
 

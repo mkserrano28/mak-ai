@@ -80,7 +80,7 @@ if st.session_state.theme == "dark":
 
 else:
 
-    background = "#f8fafc"
+    background = "#eef2f7"
     text = "#111827"
 
     app_background = """

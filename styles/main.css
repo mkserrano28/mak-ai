@@ -328,7 +328,7 @@ section.main .element-container {
 
     padding: 8px 16px 8px 58px !important;
 
-    overflow: hidden !important;
+    overflow: visible !important;
 
     box-shadow:
     0 10px 40px rgba(0,0,0,0.22) !important;
@@ -342,7 +342,7 @@ section.main .element-container {
 }
 /* REMOVE INNER BACKGROUNDS */
 
-[data-testid="stChatInput"] * {
+[data-testid="stChatInput"] textarea {
 
     background: transparent !important;
 
@@ -540,7 +540,47 @@ section.main > div {
     margin-top: 4px !important;
 }
 
+/* FORCE CHAT ACTION BUTTONS VISIBLE */
 
+[data-testid="stChatInput"] button {
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    color: #111827 !important;
+
+    background: transparent !important;
+}
+
+/* ICONS */
+
+[data-testid="stChatInput"] button * {
+
+    color: #111827 !important;
+
+    fill: #111827 !important;
+
+    stroke: #111827 !important;
+
+    opacity: 1 !important;
+}
+
+/* DARK MODE */
+
+[data-theme="dark"] [data-testid="stChatInput"] button,
+[data-theme="dark"] [data-testid="stChatInput"] button * {
+
+    color: white !important;
+
+    fill: white !important;
+
+    stroke: white !important;
+}
+
+
+
+/* Screen responsive */
 
 @media (max-width: 1024px) {
 
