@@ -81,11 +81,11 @@
 
     position: fixed !important;
 
-    left: 50% !important;
+    left: 52% !important;
 
     transform: translateX(-340px) !important;
 
-    bottom: 12px !important;
+    bottom: -25px !important;
 
     width: 40px !important;
 
