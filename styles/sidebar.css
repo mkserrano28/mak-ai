@@ -422,33 +422,30 @@ color: var(--sidebar-text) !important;
         margin-bottom: 20px !important;
     }
 
-[data-testid="collapsedControl"] svg {
-
-    color: #374151 !important;
-
-    opacity: 1 !important;
-}
-[data-theme="dark"] [data-testid="collapsedControl"] svg {
-
-    color: white !important;
-}
 /* SIDEBAR TOGGLE */
 
 [data-testid="collapsedControl"] {
 
-    color: #374151 !important;
+    color: #111827 !important;
 
     opacity: 1 !important;
+
+    font-weight: 700 !important;
 }
 
 [data-testid="collapsedControl"] * {
 
-    color: #374151 !important;
+    color: #111827 !important;
 
-    fill: #374151 !important;
+    fill: #111827 !important;
 
-    stroke: #374151 !important;
+    stroke: #111827 !important;
+
+    opacity: 1 !important;
 }
+
+/* DARK MODE */
+
 [data-theme="dark"] [data-testid="collapsedControl"],
 [data-theme="dark"] [data-testid="collapsedControl"] * {
 

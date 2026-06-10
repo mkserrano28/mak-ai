@@ -127,6 +127,83 @@ theme_css = f"""
         if st.session_state.theme == "dark"
         else "#6b7280"
     };
+    --sidebar-bg: {
+        "rgba(15,23,42,0.92)"
+        if st.session_state.theme == "dark"
+        else "rgba(255,255,255,0.92)"
+    };
+
+    --sidebar-text: {
+        "#ffffff"
+        if st.session_state.theme == "dark"
+        else "#111827"
+    };
+
+    --sidebar-subtext: {
+        "#94a3b8"
+        if st.session_state.theme == "dark"
+        else "#6b7280"
+    };
+
+    --sidebar-border: {
+        "rgba(255,255,255,0.08)"
+        if st.session_state.theme == "dark"
+        else "#d1d5db"
+    };
+
+    --sidebar-card-bg: {
+        "rgba(255,255,255,0.04)"
+        if st.session_state.theme == "dark"
+        else "#ffffff"
+    };
+
+    --sidebar-card-border: {
+        "rgba(255,255,255,0.08)"
+        if st.session_state.theme == "dark"
+        else "#e5e7eb"
+    };
+
+    --sidebar-button-bg: {
+        "rgba(255,255,255,0.03)"
+        if st.session_state.theme == "dark"
+        else "#ffffff"
+    };
+
+    --sidebar-button-border: {
+        "rgba(255,255,255,0.06)"
+        if st.session_state.theme == "dark"
+        else "#e5e7eb"
+    };
+
+    --sidebar-hover-bg: {
+        "rgba(59,130,246,0.12)"
+        if st.session_state.theme == "dark"
+        else "#f3f4f6"
+    };
+
+    --sidebar-hover-border: {
+        "rgba(59,130,246,0.25)"
+        if st.session_state.theme == "dark"
+        else "#d1d5db"
+    };
+
+    --sidebar-hover-shadow: {
+        "0 10px 30px rgba(0,0,0,0.15)"
+        if st.session_state.theme == "dark"
+        else "0 10px 20px rgba(0,0,0,0.08)"
+    };
+
+    --sidebar-secondary-hover-bg: {
+        "rgba(255,255,255,0.06)"
+        if st.session_state.theme == "dark"
+        else "#f9fafb"
+    };
+
+    --sidebar-secondary-hover-border: {
+        "rgba(255,255,255,0.08)"
+        if st.session_state.theme == "dark"
+        else "#e5e7eb"
+    };
 
 }}
 </style>
