@@ -363,6 +363,19 @@ section.main .element-container {
     outline: none !important;
 
     box-shadow: none !important;
+
+    color: var(--text-color) !important;
+    -webkit-text-fill-color: var(--text-color) !important;
+}
+/* IPHONE SAFARI FIX */
+
+[data-testid="stChatInput"] textarea,
+[data-testid="stChatInput"] textarea:focus,
+[data-testid="stChatInput"] textarea:active {
+
+    color: var(--text-color) !important;
+    -webkit-text-fill-color: var(--text-color) !important;
+    opacity: 1 !important;
 }
 
 /* TEXTAREA */
@@ -745,6 +758,31 @@ section.main > div {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+
+
+/* INPUT TEXT COLOR */
+
+[data-testid="stChatInput"] textarea {
+    color: var(--text-color) !important;
+    -webkit-text-fill-color: var(--text-color) !important;
+}
+
+/* LIGHT MODE FIX */
+
+html:not([data-theme="dark"])
+[data-testid="stChatInput"] textarea {
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827 !important;
+}
+
+/* DARK MODE FIX */
+
+[data-theme="dark"]
+[data-testid="stChatInput"] textarea {
+    color: white !important;
+    -webkit-text-fill-color: white !important;
 }
 /* Screen responsive */
 
