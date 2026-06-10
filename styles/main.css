@@ -340,6 +340,18 @@ section.main .element-container {
         0 0 0 3px rgba(59,130,246,0.18),
         0 10px 40px rgba(0,0,0,0.22) !important;
 }
+/* CHAT INPUT HOVER */
+
+[data-testid="stChatInput"] > div:hover {
+
+    border-color: rgba(255,255,255,0.18) !important;
+
+    backdrop-filter: blur(24px);
+
+    box-shadow:
+        0 0 20px rgba(59,130,246,0.15),
+        0 10px 40px rgba(0,0,0,0.22) !important;
+}
 /* REMOVE INNER BACKGROUNDS */
 
 [data-testid="stChatInput"] textarea {
@@ -356,7 +368,6 @@ section.main .element-container {
 /* TEXTAREA */
 
 [data-testid="stChatInput"] textarea {
-    color: var(--text-color) !important;
 
     font-size: 15px !important;
 
@@ -366,14 +377,7 @@ section.main .element-container {
 
     resize: none !important;
 }
-/* LIGHT MODE TEXTAREA FIX */
 
-[data-testid="stChatInput"] textarea {
-
-    background: transparent !important;
-
-    color: var(--text-color) !important;
-}
 
 /* STREAMLIT TEXTAREA WRAPPER */
 
@@ -612,8 +616,101 @@ section.main > div {
     stroke: white !important;
 }
 
+/* REMOVE SEND BUTTON BORDER */
+
+[data-testid="stChatInput"] button {
+
+    border: none !important;
+
+    outline: none !important;
+
+    box-shadow: none !important;
+
+    background: transparent !important;
+}
+
+[data-testid="stChatInput"] button:focus,
+[data-testid="stChatInput"] button:focus-visible {
+
+    border: none !important;
+
+    outline: none !important;
+
+    box-shadow: none !important;
+}
+/* REMOVE SEND ICON BOX */
+
+[data-testid="stChatInput"] button svg {
+
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+/* REMOVE SVG RECTANGLE */
+
+[data-testid="stChatInput"] button svg rect {
+
+    display: none !important;
+    stroke: none !important;
+    fill: none !important;
+}
+
+[data-testid="stChatInput"] button svg path {
+
+    stroke-width: 2px !important;
+}
+
+/* SEND BUTTON FIX */
+
+[data-testid="stChatInput"] button {
+
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+}
+/* BUTTON WRAPPER FIX */
+
+[data-testid="stChatInput"] button > div {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
 
 
+
+
+.thinking-message {
+    max-width: 300px;
+    margin: 10px auto;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: var(--ai-message-bg);
+    animation: thinkingPulse 1.5s infinite;
+}
+
+@keyframes thinkingPulse {
+    0% {
+        opacity: .45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: .45;
+    }
+}
 /* Screen responsive */
 
 @media (max-width: 1024px) {

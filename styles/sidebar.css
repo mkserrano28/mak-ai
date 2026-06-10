@@ -453,11 +453,13 @@ color: var(--sidebar-text) !important;
 [data-theme="dark"] [data-testid="collapsedControl"],
 [data-theme="dark"] [data-testid="collapsedControl"] * {
 
-    color: white !important;
+    color: #000000 !important;
 
-    fill: white !important;
+    fill: #000000 !important;
 
-    stroke: white !important;
+    stroke: #000000 !important;
+
+    font-weight: 800 !important;
 }
 
 @media (width: 1024px) and (height: 600px) {

@@ -1,7 +1,6 @@
 import streamlit as st
 from sentence_transformers import SentenceTransformer
-import html
-import re
+import time
 
 from utils.formatter import (
     image_to_base64,
@@ -27,6 +26,7 @@ from components.stream_renderer import (
     render_stream
 )
 from services.web_search import search_web
+from utils.scroll import scroll_to_bottom
 
 
 @st.cache_resource
@@ -168,6 +168,7 @@ if st.session_state.current_chat:
         []
     )
 render_chat(messages)
+scroll_to_bottom()
 
 
 prompt = handle_uploads(
@@ -209,6 +210,32 @@ if prompt:
             else None
         )
     })
+
+    # SHOW USER MESSAGE IMMEDIATELY
+
+    st.markdown(
+        f"""
+        <div class="chat-row-user">
+            <div class="user-msg">
+                {prompt}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    thinking_placeholder = st.empty()
+
+    thinking_placeholder.markdown(
+        """
+        <div class="thinking-message">
+            Mak-Ai Thinking...
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    time.sleep(1)
 
     # AI RESPONSE
 
@@ -332,6 +359,7 @@ if prompt:
             messages_payload,
             model_name
         )
+        thinking_placeholder.empty()
     except Exception as e:
 
         error_text = str(e)
@@ -367,5 +395,7 @@ if prompt:
 
     st.session_state.show_attachment_bar = False
     st.session_state.uploader_key += 1
+
+    scroll_to_bottom()
 
     st.rerun()
