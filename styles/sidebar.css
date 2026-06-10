@@ -443,6 +443,10 @@ color: var(--sidebar-text) !important;
 
     opacity: 1 !important;
 }
+[data-theme="dark"] [data-testid="collapsedControl"] svg {
+
+    color: white !important;
+}
 
 /* DARK MODE */
 
