@@ -741,12 +741,11 @@ section.main > div {
 
     display: flex;
     flex-direction: column;
-
+    font-family: var(--font-ui-serif);
     justify-content: center;
     align-items: center;
 
     text-align: center;
-
     margin-top: 15vh;
 
     color: var(--text-color);
@@ -784,7 +783,21 @@ section.main > div {
         max-width: 92% !important;
     }
 }
+@media (min-width: 1200px) {
 
+    .welcome-container {
+
+        position: fixed;
+
+        left: calc(50% + 100px);
+
+        transform: translateX(-50%);
+
+        width: 700px;
+
+        text-align: center;
+    }
+}
 @media (max-width: 768px) {
 
     .chat-row-ai,
@@ -836,6 +849,7 @@ section.main > div {
     .chat-history-item {
         font-size: 13px !important;
     }
+    
 }
 @media (min-width: 1025px) and (max-width: 1400px) {
 
