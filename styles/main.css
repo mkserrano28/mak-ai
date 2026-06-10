@@ -366,7 +366,29 @@ section.main .element-container {
 
     resize: none !important;
 }
+/* LIGHT MODE TEXTAREA FIX */
 
+[data-testid="stChatInput"] textarea {
+
+    background: transparent !important;
+
+    color: var(--text-color) !important;
+}
+
+/* STREAMLIT TEXTAREA WRAPPER */
+
+[data-testid="stChatInput"] textarea,
+[data-testid="stChatInput"] textarea:focus,
+[data-testid="stChatInput"] div[data-testid="stChatInputTextArea"] {
+
+    background: transparent !important;
+
+    box-shadow: none !important;
+}
+[data-testid="stChatInput"] div {
+
+    background: transparent !important;
+}
 /* PLACEHOLDER */
 
 [data-testid="stChatInput"] textarea::placeholder {
@@ -553,7 +575,7 @@ section.main > div {
     background: transparent !important;
 }
 
-/* ICONS */
+/* ICONS 
 
 [data-testid="stChatInput"] button * {
 
@@ -565,6 +587,7 @@ section.main > div {
 
     opacity: 1 !important;
 }
+    */
 
 /* DARK MODE */
 
