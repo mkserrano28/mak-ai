@@ -47,3 +47,26 @@ mak-ai/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+
+Clone the repository
+git clone https://github.com/YOUR-USERNAME/mak-ai.git
+cd mak-ai
+
+
+Create and activate a virtual environment
+Windows Powershell
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+
+macOS /Linux
+python3 -m venv venv
+source venv/bin/activate
+
+Install Dependecies
+pip install -r requirements.txt
+
+Configure environment variables
+GROQ_API_KEY=your_groq_api_key_here
+
+Run Mak-Ai
+streamlit run app.py
