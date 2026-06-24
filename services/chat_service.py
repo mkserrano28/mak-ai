@@ -1,3 +1,7 @@
+import os
+from types import SimpleNamespace
+
+
 from services.groq_service import client
 
 def get_model_name(
@@ -15,6 +19,21 @@ def create_chat_completion(
     messages_payload,
     model_name
 ):
+    if os.getenv("TEST_MODE") == "true":
+        fake_chunk = SimpleNamespace(
+            choices=[
+                SimpleNamespace(
+                    delta=SimpleNamespace(
+                        content=(
+                            "TEST_RESPONSE: "
+                            "RAG answer generated successfully."
+                        )
+                    )
+                )
+            ]
+        )
+
+        return iter([fake_chunk])
 
     return client.chat.completions.create(
         model=model_name,

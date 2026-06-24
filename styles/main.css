@@ -750,7 +750,7 @@ section.main > div {
 
     color: var(--text-color);
 
-    animation: fadeIn .4s ease;
+    animation: fadeIn .1s ease;
 }
 
 @keyframes fadeIn {
