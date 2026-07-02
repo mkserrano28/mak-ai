@@ -15,7 +15,7 @@ from utils.formatter import (
 
 def render_chat(messages):
 
-    for msg in messages:
+    for idx, msg in enumerate(messages):
 
         if msg["role"] == "user":
 
@@ -98,8 +98,28 @@ def render_chat(messages):
                 unsafe_allow_html=True
             )
 
+            # Copy button
             st_copy_to_clipboard(
                 msg["content"],
                 before_copy_label="⧉",
-                after_copy_label="✔ "
+                after_copy_label="✔",
+                key=f"copy_{idx}"
             )
+
+            # Download generated file (PowerPoint, Word, Excel, etc.)
+            generated = msg.get("generated_file")
+
+            if (
+                generated
+                and msg["role"] == "assistant"
+                and "generated" in msg["content"].lower()
+            ):
+
+                with open(generated["path"], "rb") as f:
+                    st.download_button(
+                        label=f"📥 Download {generated['name']}",
+                        data=f,
+                        file_name=generated["name"],
+                        mime=generated["mime"],
+                        key=f"download_{idx}"
+                    )

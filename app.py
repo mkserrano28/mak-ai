@@ -27,6 +27,12 @@ from components.stream_renderer import (
 )
 from services.web_search import search_web
 from utils.scroll import scroll_to_bottom
+from services.ppt_generator import create_presentation
+from services.ppt_ai import (
+    generate_presentation_json,
+    generate_presentation_from_text
+)
+
 
 
 @st.cache_resource
@@ -250,7 +256,57 @@ if prompt:
     # AI RESPONSE
 
     try:
-        # BUILD MESSAGE PAYLOAD
+
+        # -------------------------
+        # PowerPoint Generator
+        # -------------------------
+
+        if (
+            "powerpoint" in prompt.lower()
+            or "presentation" in prompt.lower()
+        ):
+
+            st.write("✅ PowerPoint mode detected")
+
+            if st.session_state.all_chunks:
+
+                pdf_text = "\n".join(st.session_state.all_chunks)
+
+                presentation = generate_presentation_from_text(pdf_text)
+
+            else:
+
+                presentation = generate_presentation_json(prompt)
+
+            # Create PowerPoint
+            ppt_path = create_presentation(
+                presentation["title"],
+                presentation["slides"]
+            )
+
+            thinking_placeholder.empty()
+
+            messages.append({
+                "role": "assistant",
+                "content": " PowerPoint has been generated.",
+                "generated_file": {
+                    "path": ppt_path,
+                    "name": "presentation.pptx",
+                    "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                }
+            })
+
+            st.session_state.pending_image = None
+            st.session_state.uploaded_image_bytes = None
+            st.session_state.pdf_files.clear()
+            st.session_state.show_attachment_bar = False
+            st.session_state.uploader_key += 1
+
+            scroll_to_bottom()
+
+            st.rerun()
+
+           
 
         history = messages[:-1]
 
@@ -396,14 +452,5 @@ if prompt:
         "role": "assistant",
         "content": reply
     })
-    st.session_state.pending_image = None
-    st.session_state.uploaded_image_bytes = None
-
-    st.session_state.pdf_files.clear()
-
-    st.session_state.show_attachment_bar = False
-    st.session_state.uploader_key += 1
-
-    scroll_to_bottom()
-
     st.rerun()
+
