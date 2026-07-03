@@ -155,7 +155,6 @@ https://your-mak-ai-production-url.up.railway.app
 
 **Mark Serrano**
 
-* GitHub: https://github.com/YOUR-USERNAME
 * LinkedIn: https://www.linkedin.com/in/mark-serrano-520299250
 
 ---
