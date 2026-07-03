@@ -38,7 +38,7 @@ def create_chat_completion(
     return client.chat.completions.create(
         model=model_name,
         messages=messages_payload,
-        max_tokens=1024,
+        max_tokens=4096,
         temperature=0.7,
         stream=True
     )

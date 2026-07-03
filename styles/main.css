@@ -732,8 +732,71 @@ section.main > div {
     }
 }
 
+/* ==========================
+   FILE CARD
+========================== */
 
+.file-card {
 
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin-top: 10px;
+
+    padding: 12px 16px;
+
+    width: 320px;
+
+    border-radius: 16px;
+
+    background: var(--ai-message-bg);
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    box-shadow: 0 6px 24px rgba(0,0,0,.15);
+
+    transition: .2s;
+}
+
+.file-card:hover {
+
+    transform: translateY(-1px);
+
+    border-color: rgba(59,130,246,.45);
+}
+
+.file-icon {
+
+    font-size: 28px;
+}
+
+.file-info {
+
+    flex: 1;
+}
+
+.file-name {
+
+    font-weight: 600;
+    font-size: 15px;
+
+    color: var(--text-color);
+}
+
+.file-type {
+
+    font-size: 13px;
+
+    color: #6b7280;
+}
+
+.download-wrapper{
+
+    margin-left: 48px;
+    margin-top: -10px;
+    margin-bottom: 18px;
+}
 
 
 

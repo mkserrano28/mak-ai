@@ -85,41 +85,36 @@ def render_chat(messages):
 
         else:
 
-            st.markdown(
-                f"""
-                <div class="chat-row-ai">
-                    <div class="ai-wrapper">
-                        <div class="ai-message">
-                            {format_ai_content(msg["content"])}
+            with st.container():
+
+                st.markdown(
+                    f"""
+                    <div class="chat-row-ai">
+                        <div class="ai-wrapper">
+                            <div class="ai-message">
+                                {format_ai_content(msg["content"])}
+                            </div>
                         </div>
                     </div>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
+                    """,
+                    unsafe_allow_html=True
+                )
 
-            # Copy button
-            st_copy_to_clipboard(
-                msg["content"],
-                before_copy_label="⧉",
-                after_copy_label="✔",
-                key=f"copy_{idx}"
-            )
+                st_copy_to_clipboard(
+                    msg["content"],
+                    before_copy_label="⧉",
+                    after_copy_label="✔",
+                    key=f"copy_{idx}"
+                )
 
-            # Download generated file (PowerPoint, Word, Excel, etc.)
-            generated = msg.get("generated_file")
+                generated = msg.get("generated_file")
 
-            if (
-                generated
-                and msg["role"] == "assistant"
-                and "generated" in msg["content"].lower()
-            ):
-
-                with open(generated["path"], "rb") as f:
-                    st.download_button(
-                        label=f"📥 Download {generated['name']}",
-                        data=f,
-                        file_name=generated["name"],
-                        mime=generated["mime"],
-                        key=f"download_{idx}"
-                    )
+                if generated:
+                    with open(generated["path"], "rb") as f:
+                        st.download_button(
+                            label=f"📥 Download {generated['name']}",
+                            data=f,
+                            file_name=generated["name"],
+                            mime=generated["mime"],
+                            key=f"download_{idx}",
+                        )

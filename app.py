@@ -207,6 +207,7 @@ if prompt:
         st.session_state.chats[new_title] = []
 
         st.session_state.current_chat = new_title
+        st.session_state.ppt_generated = False
 
         messages = st.session_state.chats[new_title]
 
@@ -261,12 +262,32 @@ if prompt:
         # PowerPoint Generator
         # -------------------------
 
-        if (
-            "powerpoint" in prompt.lower()
-            or "presentation" in prompt.lower()
-        ):
+        PPT_KEYWORDS = [
+            "powerpoint",
+            "presentation",
+            "ppt",
+            ".pptx",
+            "slides",
+            "slide deck",
+            "slideshow",
+        ]
+        ACTION_WORDS = [
+            "create",
+            "generate",
+            "make",
+            "build",
+            "prepare",
+        ]
 
-            st.write("✅ PowerPoint mode detected")
+        prompt_lower = prompt.lower()
+
+        is_ppt_request = (
+            any(action in prompt_lower for action in ACTION_WORDS)
+            and any(keyword in prompt_lower for keyword in PPT_KEYWORDS)
+        )
+
+        if is_ppt_request:
+
 
             if st.session_state.all_chunks:
 
@@ -283,11 +304,13 @@ if prompt:
                 presentation["title"],
                 presentation["slides"]
             )
+            st.session_state.ppt_generated = True
 
             thinking_placeholder.empty()
 
             messages.append({
                 "role": "assistant",
+                "name": "ppt_generator",
                 "content": " PowerPoint has been generated.",
                 "generated_file": {
                     "path": ppt_path,
@@ -375,11 +398,31 @@ if prompt:
             else:
                 context = search_context_text
 
+        # Conversation history (exclude current user message)
+        history = messages[:-1]
+
+        # If the last assistant message generated a PowerPoint,
+        # remind the LLM that it has already done so.
+        if st.session_state.get("ppt_generated", False):
+            history.insert(
+                0,
+                {
+                    "role": "system",
+                    "content": (
+                        "Earlier in this conversation you successfully generated "
+                        "a PowerPoint presentation and provided it to the user. "
+                        "Never say that you cannot generate PowerPoint presentations. "
+                        "If the user thanks you or asks about that presentation, "
+                        "respond as though it has already been created."
+                    )
+                }
+            )
+
         messages_payload = build_messages_payload(
             history,
             prompt,
             context
-        )        
+        )       
            
         # ADD IMAGE IF EXISTS
         if st.session_state.pending_image:
