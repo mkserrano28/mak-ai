@@ -54,10 +54,13 @@ embedding_model = get_embedding_model()
 
 # PAGE CONFIG
 
+
+
 st.set_page_config(
     page_title="Mak-AI",
-    page_icon="🤖",
-    layout="wide"
+    page_icon="assets/themes/business/logo.png",
+    layout="wide",
+    initial_sidebar_state="expanded",
 )
 
 initialize_session()
