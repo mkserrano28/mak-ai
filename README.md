@@ -1,10 +1,10 @@
-# 🤖 Mak-AI
+#  Mak-AI
 
 > An AI-powered document and image assistant built with Streamlit, RAG, FAISS, and Groq.
 
 Mak-AI allows users to upload documents or images and ask questions through a responsive chat interface. It uses **Retrieval-Augmented Generation (RAG)** to retrieve relevant content from uploaded files before generating an AI response.
 
-## ✨ Features
+##  Features
 
 *  AI chat interface built with Streamlit
 *  Upload and process PDF, TXT, DOCX, and CSV files
@@ -32,7 +32,7 @@ Mak-AI allows users to upload documents or images and ask questions through a re
 | Deployment          | Railway                          |
 | Version Control     | Git, GitHub                      |
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 mak-ai/
@@ -55,7 +55,7 @@ mak-ai/
 └── README.md
 ```
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Clone the repository
 
@@ -108,7 +108,7 @@ Then open the local URL shown in your terminal, usually:
 http://localhost:8501
 ```
 
-## 🧪 Running Tests
+##  Running Tests
 
 Mak-AI uses **pytest** and **Playwright** for automated UI testing.
 
@@ -120,7 +120,7 @@ pytest tests/test_makai_ui.py
 
 The application supports a test mode so automated tests can validate the UI without making real requests to the Groq API.
 
-## 🧠 How RAG Works
+##  How RAG Works
 
 1. The user uploads a document.
 2. Mak-AI extracts the text from the file.
@@ -130,7 +130,7 @@ The application supports a test mode so automated tests can validate the UI with
 6. When the user asks a question, Mak-AI retrieves the most relevant chunks.
 7. The retrieved context is sent to the AI model to generate a more accurate answer.
 
-## 🌐 Deployment
+##  Deployment
 
 Mak-AI is deployed using Railway.
 
@@ -140,7 +140,7 @@ Add your live application link here:
 https://your-mak-ai-production-url.up.railway.app
 ```
 
-## 🔮 Future Improvements
+##  Future Improvements
 
 * Support for multiple document collections
 * Conversation history persistence
@@ -151,12 +151,10 @@ https://your-mak-ai-production-url.up.railway.app
 * Improved document preview
 * CI/CD pipeline for automated testing and deployment
 
-## 👨‍💻 Author
+##  Author
 
 **Mark Serrano**
 
 * LinkedIn: https://www.linkedin.com/in/mark-serrano-520299250
 
----
 
-⭐ If you found this project useful, consider giving it a star!
