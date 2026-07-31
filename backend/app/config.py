@@ -1,0 +1,18 @@
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+class Settings(BaseSettings):
+    GROQ_API_KEY: str
+    TAVILY_API_KEY: str
+
+    # Add these two lines
+    N8N_URL: str
+    N8N_API_KEY: str
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        extra="ignore",
+    )
+
+
+settings = Settings()

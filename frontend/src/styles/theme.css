@@ -1,0 +1,29 @@
+@theme {
+
+  /* Background */
+
+  --color-background: #070B12;
+
+  --color-sidebar: #0D141D;
+
+  --color-surface: #121B26;
+
+  --color-surface-light: #182330;
+
+  /* Accent */
+
+  --color-primary: #00D5D8;
+
+  --color-primary-hover: #0AEFF3;
+
+  /* Text */
+
+  --color-text: #F7FAFC;
+
+  --color-text-muted: #94A3B8;
+
+  /* Borders */
+
+  --color-border: #1F2A37;
+
+}

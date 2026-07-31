@@ -1,0 +1,67 @@
+{
+    "name": "Daily Sales Report",
+    "nodes": [
+        {
+            "id": "1",
+            "name": "Schedule Trigger",
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "position": [
+                0,
+                0
+            ],
+            "parameters": {
+                "cron": "0 8 * * *"
+            }
+        },
+        {
+            "id": "2",
+            "name": "PostgreSQL",
+            "type": "n8n-nodes-base.postgres",
+            "position": [
+                600,
+                0
+            ],
+            "parameters": {
+                "query": "SELECT * FROM sales"
+            }
+        },
+        {
+            "id": "3",
+            "name": "Gmail",
+            "type": "n8n-nodes-base.gmail",
+            "position": [
+                900,
+                0
+            ],
+            "parameters": {
+                "to": "manager@example.com",
+                "subject": "Daily Sales Report",
+                "body": "Please find the sales report attached."
+            }
+        }
+    ],
+    "connections": {
+        "Schedule Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "PostgreSQL",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "PostgreSQL": {
+            "main": [
+                [
+                    {
+                        "node": "Gmail",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

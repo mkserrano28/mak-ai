@@ -1,0 +1,17 @@
+{
+  "id": "2",
+  "name": "PostgreSQL",
+  "type": "n8n-nodes-base.postgres",
+  "typeVersion": 2.6,
+  "position": [500, 0],
+  "parameters": {
+    "operation": "executeQuery",
+    "query": ""
+  },
+  "credentials": {
+    "postgres": {
+      "id": "",
+      "name": ""
+    }
+  }
+}

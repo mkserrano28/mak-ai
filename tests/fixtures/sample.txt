@@ -1,2 +1,0 @@
-Mak-AI test document.
-Python and AWS are skills.

@@ -1,0 +1,245 @@
+.workflow-node {
+  min-width: 220px;
+  background: #1f2937;
+  color: white;
+  border-radius: 12px;
+  border: 2px solid #374151;
+  padding: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.workflow-node-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.workflow-icon {
+  font-size: 26px;
+}
+
+.workflow-node-type {
+  margin-top: 8px;
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.workflow-query {
+  margin-top: 12px;
+  background: #111827;
+  color: #22c55e;
+  padding: 10px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 12px;
+}
+.workflow-sidebar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 360px;
+  height: 100%;
+  background: #111827;
+  color: white;
+  padding: 20px;
+  overflow: auto;
+  border-left: 1px solid #374151;
+}
+.workflow-sidebar textarea {
+  width: 100%;
+  min-height: 150px;
+  background: #111827;
+  color: white;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  padding: 12px;
+  resize: vertical;
+}
+.react-flow__controls {
+  background: #111827 !important;
+  border: 1px solid #374151 !important;
+  border-radius: 12px;
+}
+
+.react-flow__controls button {
+  background: transparent !important;
+}
+
+.react-flow__controls button:hover {
+  background: #1f2937 !important;
+}
+
+.react-flow__controls button svg {
+  fill: white !important;
+}
+
+.workflow-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 20px;
+
+  background: #111827;
+
+  border-bottom: 1px solid #374151;
+}
+
+.workflow-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.workflow-toolbar-right {
+  display: flex;
+  gap: 10px;
+}
+
+.workflow-toolbar button {
+  background: #1f2937;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 8px;
+
+  padding: 8px 14px;
+
+  cursor: pointer;
+}
+
+.deploy-btn {
+  background: #22c55e;
+
+  color: black;
+
+  font-weight: bold;
+}
+
+.react-flow__handle {
+  width: 12px;
+  height: 12px;
+  border: 2px solid white;
+  cursor: crosshair;
+}
+
+.node-palette {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+
+  width: 260px;
+
+  background: #111827;
+
+  border: 1px solid #374151;
+
+  border-radius: 12px;
+
+  padding: 16px;
+
+  z-index: 1000;
+}
+
+.node-palette h3 {
+  color: white;
+
+  margin-bottom: 10px;
+
+  margin-top: 18px;
+}
+
+.node-palette button {
+  width: 100%;
+
+  margin-bottom: 8px;
+}
+.node-palette {
+  position: absolute;
+
+  top: 70px;
+  left: 20px;
+
+  width: 280px;
+
+  background: #111827;
+
+  border: 1px solid #374151;
+
+  border-radius: 12px;
+
+  padding: 16px;
+
+  z-index: 9999;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+.node-search {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+
+  background: #1f2937;
+  color: white;
+
+  border: 1px solid #374151;
+  border-radius: 8px;
+
+  outline: none;
+}
+
+.node-search:focus {
+  border-color: #6366f1;
+}
+
+.no-results {
+  color: #9ca3af;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+.node-card {
+  display: flex;
+  gap: 12px;
+
+  align-items: center;
+
+  background: #1f2937;
+
+  border: 1px solid #374151;
+
+  border-radius: 10px;
+
+  padding: 12px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  margin-bottom: 10px;
+}
+
+.node-card:hover {
+  border-color: #6366f1;
+
+  transform: translateY(-2px);
+}
+
+.node-card-icon {
+  font-size: 24px;
+}
+
+.node-card h5 {
+  margin: 0;
+  color: white;
+}
+
+.node-card p {
+  margin: 2px 0 0;
+
+  color: #9ca3af;
+
+  font-size: 12px;
+}
