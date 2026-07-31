@@ -1,151 +1,344 @@
-# Mak-AI
+<div align="center">
 
-> An AI-powered workspace for intelligent conversations, document analysis, AI agents, and AI-generated n8n workflow automation.
+# ✦ Mak-AI
 
-Mak-AI is a full-stack AI platform designed to bring **AI chat, document intelligence, AI agents, and workflow automation** into a single workspace.
+### AI Chat • AI Agents • Intelligent Workflows • n8n Automation
 
-Built with **React, FastAPI, PostgreSQL, LangGraph, and n8n**, Mak-AI can understand natural-language automation requests and **generate n8n workflows** that users can use to automate business processes and connect external applications and services.
+**Mak-AI is an AI-powered workspace that turns natural language into conversations, insights, agents, and automated workflows.**
 
-For example, a user can ask:
+Built with **React • FastAPI • PostgreSQL • LangGraph • n8n**
 
-> "Create a workflow that receives a new invoice, extracts the invoice data, saves it to PostgreSQL, and sends a Slack notification."
+<br />
 
-Mak-AI can translate that request into a structured **n8n workflow**, reducing the need to manually build every automation node by node.
+`AI Chat` · `Document Intelligence` · `AI Agents` · `Workflow Builder` · `n8n Generation`
 
-Mak-AI is evolving beyond a traditional AI chatbot into an **AI-powered workflow builder and automation platform**.
+</div>
 
 ---
 
-## Features
+## ✨ What is Mak-AI?
 
-### AI Chat
+Mak-AI is a full-stack **AI workspace and automation platform** designed to bring AI conversations, document intelligence, autonomous agents, and workflow automation into one unified experience.
 
-- Modern conversational AI interface
-- Persistent chat conversations
+Instead of manually building complex automations node by node, users can describe what they want in natural language.
+
+> **"Create a workflow that receives a new invoice, extracts the invoice data, saves it to PostgreSQL, and sends a Slack notification."**
+
+Mak-AI can interpret the request and generate a structured **n8n workflow** that connects the required services and automation steps.
+
+The goal is simple:
+
+<div align="center">
+
+### Ask → Analyze → Build → Automate → Execute
+
+</div>
+
+---
+
+# 🚀 Core Capabilities
+
+## 💬 AI Chat
+
+A modern AI conversation experience built directly into the Mak-AI workspace.
+
+- Conversational AI interface
+- Persistent conversations
 - Multiple chat sessions
-- Chat search
+- Chat history search
 - Rename and delete conversations
 - AI response/loading states
 - Responsive desktop and mobile interface
 
-### User Accounts
+---
 
-- User registration and login
-- JWT-based authentication
-- User profile management
-- Subscription plan support
-- Free and Pro plan architecture
+## 🧠 AI Agents
 
-### Workspaces
+Mak-AI uses AI agents to handle more advanced tasks and multi-step operations.
 
-- Create and manage workspaces
-- Organize chats and documents
-- Workspace-based AI context
-- Foundation for collaborative AI workflows
+- Stateful AI agents
+- Tool-enabled agents
+- Multi-step reasoning
+- Conditional execution
+- Agent-based workflow planning
+- Foundation for multi-agent systems
+- LangGraph-powered orchestration
 
-### Document Intelligence
+---
 
-Mak-AI supports document-oriented AI workflows such as:
+## ⚡ AI-Generated n8n Workflows
+
+One of Mak-AI's core capabilities is transforming **natural-language automation requests into n8n workflows**.
+
+Instead of manually configuring every node, users can describe the automation they want Mak-AI to build.
+
+### Example
+
+```text
+User Prompt
+     │
+     ▼
+"Monitor incoming invoices,
+extract their information,
+store them in PostgreSQL,
+and notify our Slack channel."
+     │
+     ▼
+   Mak-AI
+     │
+     ▼
+Understand Requirements
+     │
+     ▼
+Generate Workflow Structure
+     │
+     ▼
+Generate n8n Workflow
+     │
+     ▼
+┌─────────┐
+│ Webhook │
+└────┬────┘
+     ▼
+┌─────────────┐
+│ AI Extract  │
+└──────┬──────┘
+       ▼
+┌────────────┐
+│ PostgreSQL │
+└─────┬──────┘
+      ▼
+┌───────────┐
+│   Slack   │
+└───────────┘
+```
+
+### Workflow Generation Features
+
+- Generate n8n workflows from natural-language prompts
+- Convert business requirements into workflow structures
+- Automatically generate connected workflow nodes
+- Generate webhook-based automations
+- Generate scheduled workflows
+- Connect APIs and databases
+- Integrate third-party applications
+- Generate AI-powered automation pipelines
+
+Example integrations include:
+
+`Gmail` · `Slack` · `PostgreSQL` · `MySQL` · `MongoDB` · `Webhooks` · `HTTP APIs`
+
+---
+
+## 🔀 Visual AI Workflow Builder
+
+Mak-AI also provides a visual workflow environment for designing and understanding AI-powered processes.
+
+Supported and planned workflow nodes include:
+
+| Type | Examples |
+| --- | --- |
+| ⚡ Triggers | Schedule, Webhook |
+| 🤖 AI | AI Agent, OpenAI |
+| 🗄️ Databases | PostgreSQL, MySQL, MongoDB |
+| 📨 Communication | Gmail, Slack |
+| 🌐 APIs | HTTP Requests, Web Services |
+| 🔀 Logic | Conditions, Routing, Decisions |
+
+The workflow architecture allows AI agents, databases, APIs, and external services to participate in reusable business processes.
+
+---
+
+## 📄 Document Intelligence
+
+Mak-AI provides AI-assisted document processing and analysis.
 
 - PDF analysis
 - Document uploads
 - Context-aware document conversations
 - AI-assisted information extraction
-- Document organization within workspaces
+- Document organization
+- Workspace-based document context
 
-### AI Tools
-
-Mak-AI is being designed as more than a chatbot.
-
-The interface provides access to AI capabilities such as:
-
-- Analyze PDF
-- Web Search
-- Generate Presentations
-- Invoice AI
-- AI Vision
-- AI Agents
-
-### AI Workflow Builder
-
-Mak-AI includes an evolving visual workflow system for building AI-powered automations.
-
-Workflow nodes include:
-
-- Schedule Trigger
-- Webhook
-- PostgreSQL
-- MySQL
-- MongoDB
-- AI Agent
-- OpenAI
-- Slack
-- Gmail
-
-The workflow architecture is designed to allow AI agents and external services to be connected into reusable business processes.
-
-
-
-### AI-Generated n8n Workflows
-
-- Generate n8n workflows from natural-language prompts
-- Convert business requirements into workflow structures
-- Generate connected workflow nodes automatically
-- Create webhook and scheduled automations
-- Generate workflows involving APIs, databases, and external services
-- Support integrations such as Gmail, Slack, PostgreSQL, and HTTP APIs
-- Use AI agents to help design more complex automation workflows
-
-## Tech Stack
-
-| Category | Technologies |
-| --- | --- |
-| Frontend | React, Vite, JavaScript |
-| Styling | Tailwind CSS |
-| Backend | Python, FastAPI |
-| Database | PostgreSQL |
-| ORM / Database Layer | SQLAlchemy |
-| AI Orchestration | LangGraph |
-| AI / LLM | LLM API integrations |
-| Authentication | JWT |
-| Email | Resend |
-| Workflow UI | React Flow |
-| API Communication | REST API |
-| Version Control | Git, GitHub |
+This architecture provides the foundation for advanced document workflows such as invoice processing, contract analysis, report extraction, and knowledge retrieval.
 
 ---
 
-## Architecture
+## 🛠 AI Tools
 
-Mak-AI follows a separated frontend/backend architecture:
+Mak-AI is designed as more than a chatbot.
+
+Users can access AI capabilities such as:
+
+| Tool | Purpose |
+| --- | --- |
+| 📄 Analyze PDF | Ask questions and extract information from documents |
+| 🌐 Web Search | Retrieve information from the web |
+| 📊 Generate PPT | Generate presentation content |
+| 🧾 Invoice AI | Extract and process invoice information |
+| 🖼️ AI Vision | Analyze images using AI |
+| 🤖 AI Agents | Execute intelligent multi-step tasks |
+| ⚡ Workflow AI | Generate automation workflows |
+
+---
+
+## 🗂 Workspaces
+
+Workspaces provide an organizational layer for AI conversations, documents, and automation.
+
+- Create and manage workspaces
+- Organize chats
+- Organize uploaded documents
+- Workspace-specific AI context
+- Foundation for team collaboration
+- Foundation for workspace-specific agents
+
+---
+
+## 🔐 Authentication & Accounts
+
+Mak-AI includes a database-backed authentication system.
+
+- User registration
+- User login
+- JWT authentication
+- Protected API endpoints
+- User profiles
+- Subscription architecture
+- Free and Pro plan support
+
+---
+
+# 🧰 Tech Stack
+
+| Layer | Technology |
+| --- | --- |
+| 🎨 Frontend | React, Vite, JavaScript |
+| 💅 Styling | Tailwind CSS |
+| ⚙️ Backend | Python, FastAPI |
+| 🗄️ Database | PostgreSQL |
+| 🔗 ORM | SQLAlchemy |
+| 🧠 AI Orchestration | LangGraph |
+| ⚡ Workflow Automation | n8n |
+| 🔀 Workflow UI | React Flow |
+| 🤖 AI / LLM | LLM API Integrations |
+| 🔐 Authentication | JWT |
+| ✉️ Email | Resend |
+| 🌐 Communication | REST API, Webhooks |
+| 🔧 Version Control | Git, GitHub |
+
+---
+
+# 🏗 Architecture
+
+Mak-AI uses a separated frontend/backend architecture with dedicated AI and automation layers.
 
 ```text
-                     ┌──────────────────────┐
-                     │      React + Vite    │
-                     │       Frontend       │
-                     └──────────┬───────────┘
-                                │
-                           REST API
-                                │
-                     ┌──────────▼───────────┐
-                     │       FastAPI        │
-                     │       Backend        │
-                     └──────┬────────┬──────┘
-                            │        │
-                   ┌────────▼───┐ ┌──▼───────────┐
-                   │ PostgreSQL │ │   LangGraph  │
-                   │  Database  │ │ AI Workflows │
-                   └────────────┘ └──────┬───────┘
-                                         │
-                                  ┌──────▼──────┐
-                                  │ LLM / Tools │
-                                  │ AI Services │
-                                  └─────────────┘
+┌───────────────────────────────────────────────┐
+│                    USER                       │
+└──────────────────────┬────────────────────────┘
+                       │
+                       ▼
+              ┌──────────────────┐
+              │   React + Vite   │
+              │     Frontend     │
+              └────────┬─────────┘
+                       │
+                    REST API
+                       │
+                       ▼
+              ┌──────────────────┐
+              │     FastAPI      │
+              │     Backend      │
+              └───────┬──────────┘
+                      │
+          ┌───────────┼────────────┐
+          │           │            │
+          ▼           ▼            ▼
+ ┌──────────────┐ ┌───────────┐ ┌──────────────┐
+ │  PostgreSQL  │ │ LangGraph │ │    n8n       │
+ │   Database   │ │ AI Agents │ │  Automation  │
+ └──────────────┘ └─────┬─────┘ └──────┬───────┘
+                        │              │
+                        ▼              ▼
+                 ┌────────────┐  ┌───────────────┐
+                 │ LLM / AI   │  │ Integrations  │
+                 │   Tools    │  │ APIs / Apps   │
+                 └────────────┘  └───────────────┘
 ```
+
+### Responsibilities
+
+**React**
+
+Handles the Mak-AI user interface, conversations, workspaces, workflow visualization, and user interactions.
+
+**FastAPI**
+
+Provides authentication, business logic, database communication, AI endpoints, and integration APIs.
+
+**PostgreSQL**
+
+Stores users, conversations, workspaces, documents, subscriptions, and application data.
+
+**LangGraph**
+
+Orchestrates stateful AI agents, tool execution, reasoning flows, and complex AI processes.
+
+**n8n**
+
+Provides workflow automation and third-party integration capabilities while enabling Mak-AI to generate reusable automation workflows.
 
 ---
 
-## Project Structure
+# 🧠 AI + Automation Architecture
+
+LangGraph and n8n serve different but complementary roles inside Mak-AI.
+
+```text
+              Natural Language
+                     │
+                     ▼
+                 ┌───────┐
+                 │Mak-AI │
+                 └───┬───┘
+                     │
+                     ▼
+              ┌─────────────┐
+              │  LangGraph  │
+              │  AI Agent   │
+              └──────┬──────┘
+                     │
+              Understand / Plan
+                     │
+                     ▼
+             ┌───────────────┐
+             │ Workflow Spec │
+             └───────┬───────┘
+                     │
+                     ▼
+                ┌────────┐
+                │  n8n   │
+                └────┬───┘
+                     │
+          ┌──────────┼───────────┐
+          │          │           │
+          ▼          ▼           ▼
+       Database    Gmail       Slack
+          │
+          ▼
+         APIs
+```
+
+**LangGraph = AI reasoning and orchestration**
+
+**n8n = workflow automation and integrations**
+
+Together, they allow Mak-AI to move from simply **answering questions** to helping users **build and automate real processes**.
+
+---
+
+# 📁 Project Structure
 
 ```text
 mak-ai/
@@ -153,14 +346,13 @@ mak-ai/
 ├── backend/
 │   ├── app/
 │   │   ├── api/
+│   │   ├── core/
 │   │   ├── models/
 │   │   ├── schemas/
 │   │   ├── services/
-│   │   ├── core/
 │   │   └── main.py
 │   │
-│   ├── requirements.txt
-│   └── .env
+│   └── requirements.txt
 │
 ├── frontend/
 │   ├── public/
@@ -168,28 +360,31 @@ mak-ai/
 │   ├── src/
 │   │   ├── components/
 │   │   ├── context/
-│   │   ├── services/
 │   │   ├── pages/
+│   │   ├── services/
 │   │   ├── styles/
 │   │   └── App.jsx
 │   │
 │   ├── package.json
 │   └── vite.config.js
 │
+├── n8n/
+│   └── workflows/
+│
 ├── docker-compose.yml
 ├── .gitignore
 └── README.md
 ```
 
-> The exact structure may evolve as Mak-AI's agent and workflow architecture expands.
+> The project structure will continue to evolve as Mak-AI's agent, workflow, and automation capabilities expand.
 
 ---
 
-# Getting Started
+# 🚀 Getting Started
 
 ## Prerequisites
 
-Install the following before running Mak-AI:
+Make sure you have the following installed:
 
 - Python 3.11+
 - Node.js
@@ -199,7 +394,7 @@ Install the following before running Mak-AI:
 
 ---
 
-## 1. Clone the Repository
+## 1. Clone Mak-AI
 
 ```bash
 git clone https://github.com/mkserrano28/mak-ai.git
@@ -208,9 +403,9 @@ cd mak-ai
 
 ---
 
-# Backend Setup
+# ⚙️ Backend Setup
 
-## 2. Go to the Backend
+## 2. Open the Backend
 
 ```bash
 cd backend
@@ -232,13 +427,11 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-## 4. Install Backend Dependencies
+## 4. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
-
----
 
 ## 5. Configure Environment Variables
 
@@ -254,7 +447,6 @@ Example:
 DATABASE_URL=postgresql://username:password@localhost:5432/makai
 
 SECRET_KEY=your_secret_key
-
 ACCESS_TOKEN_EXPIRE_MINUTES=60
 
 LLM_API_KEY=your_api_key
@@ -263,31 +455,25 @@ RESEND_API_KEY=your_resend_api_key
 EMAIL_FROM=onboarding@resend.dev
 ```
 
-Do not commit `.env` files or API keys to GitHub.
-
----
+> ⚠️ Never commit `.env` files, API keys, passwords, or application secrets.
 
 ## 6. Start PostgreSQL
 
-Make sure your PostgreSQL server is running and that the Mak-AI database exists.
+Make sure PostgreSQL is running and create the Mak-AI database.
 
-Example database:
+Example:
 
 ```text
 makai
 ```
 
----
-
-## 7. Run the Backend
-
-From the `backend` directory:
+## 7. Start FastAPI
 
 ```bash
 python -m uvicorn app.main:app --reload
 ```
 
-The backend should be available at:
+Backend:
 
 ```text
 http://127.0.0.1:8000
@@ -301,29 +487,27 @@ http://127.0.0.1:8000/docs
 
 ---
 
-# Frontend Setup
+# 🎨 Frontend Setup
 
-Open another terminal.
-
-## 8. Go to the Frontend
+Open another terminal:
 
 ```bash
 cd frontend
 ```
 
-## 9. Install Dependencies
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-## 10. Run the Frontend
+Start Vite:
 
 ```bash
 npm run dev
 ```
 
-Vite will normally start Mak-AI at:
+Frontend:
 
 ```text
 http://localhost:5173
@@ -331,144 +515,168 @@ http://localhost:5173
 
 ---
 
-# Running Mak-AI Locally
+# 💻 Local Development
 
-For local development, you will normally have three services running:
+During local development, the main application services are:
 
 ```text
-PostgreSQL
-     │
-     ▼
-FastAPI Backend
-http://127.0.0.1:8000
-     │
-     ▼
-React Frontend
-http://localhost:5173
+              Browser
+                 │
+                 ▼
+        React + Vite Frontend
+        http://localhost:5173
+                 │
+                 ▼
+          FastAPI Backend
+       http://127.0.0.1:8000
+                 │
+                 ▼
+            PostgreSQL
 ```
+
+Additional AI and automation services connect through the backend as required.
 
 ---
 
-# AI Workflow System
+# ⚡ Example Automation
 
-Mak-AI is evolving from a traditional AI chatbot into an **AI automation platform**.
-
-The workflow system is designed around:
+A future end-to-end invoice workflow could look like:
 
 ```text
-Trigger
-   ↓
-AI Agent
-   ↓
-Tool / Database / API
-   ↓
-Decision
-   ↓
-Action
-```
-
-Example:
-
-```text
-New Invoice
-     ↓
+Invoice Uploaded
+       │
+       ▼
+   Mak-AI Agent
+       │
+       ▼
 Extract Invoice Data
-     ↓
-AI Validation
-     ↓
-PostgreSQL
-     ↓
-Approval Decision
-     ↓
-Send Notification
+       │
+       ▼
+Validate Information
+       │
+       ▼
+   PostgreSQL
+       │
+       ▼
+Generated n8n Workflow
+       │
+       ├─────────────┐
+       ▼             ▼
+   Send Email    Notify Slack
+       │             │
+       └──────┬──────┘
+              ▼
+          Completed
 ```
-
-LangGraph provides the orchestration layer for stateful and multi-step AI workflows.
 
 ---
 
-# Security
+# 🔒 Security
 
-Mak-AI follows several basic application security practices:
+Mak-AI follows standard application security practices including:
 
 - Password hashing
 - JWT authentication
 - Protected API endpoints
 - Environment-based secrets
-- Database-backed user accounts
+- Database-backed accounts
 - CORS configuration
 - Authentication-aware frontend routes
 
-Sensitive information should always remain inside environment variables.
-
-Never commit:
+### Never commit
 
 ```text
 .env
 API keys
-database passwords
+Database passwords
 JWT secrets
-email service credentials
+Email credentials
+Production secrets
 ```
 
 ---
 
-# Roadmap
+# 🗺️ Roadmap
 
 Mak-AI is under active development.
 
-Planned and ongoing improvements include:
+### AI
 
-- Advanced LangGraph agents
-- Visual AI workflow builder
-- Workflow execution engine
-- Multi-agent workflows
-- Human-in-the-loop approvals
-- Improved RAG architecture
-- Vector database integration
-- Advanced document intelligence
-- AI-generated presentations
-- Invoice automation
-- AI vision workflows
-- Web search integration
-- Gmail integration
-- Slack integration
-- Scheduled workflows
-- Workflow execution history
-- Usage tracking
-- Production subscription and billing
-- Team workspaces
-- Cloud deployment
-- CI/CD pipeline
-- Automated backend and frontend testing
+- [ ] Advanced LangGraph agents
+- [ ] Multi-agent systems
+- [ ] Human-in-the-loop approvals
+- [ ] Improved RAG architecture
+- [ ] Vector database integration
+- [ ] Advanced document intelligence
+- [ ] AI vision workflows
+- [ ] AI-generated presentations
 
----
+### Automation
 
-# Vision
+- [ ] Advanced n8n workflow generation
+- [ ] n8n webhook integration
+- [ ] LangGraph → n8n execution
+- [ ] Workflow templates
+- [ ] Workflow execution engine
+- [ ] Scheduled workflows
+- [ ] Workflow execution history
+- [ ] Gmail automation
+- [ ] Slack automation
+- [ ] External API integrations
 
-Mak-AI aims to become more than an AI chat application.
+### Platform
 
-The goal is to provide a workspace where users can:
-
-**Ask → Analyze → Build → Automate → Execute**
-
-from one AI-powered platform.
+- [ ] Usage tracking
+- [ ] Production subscription and billing
+- [ ] Team workspaces
+- [ ] Collaboration
+- [ ] Cloud deployment
+- [ ] CI/CD
+- [ ] Automated frontend testing
+- [ ] Automated backend testing
 
 ---
 
-## Author
+# 🎯 Vision
 
-**Mark Serrano**
+Mak-AI is being built around a simple idea:
 
-Software Engineer | AWS Certified Solutions Architect – Associate
+> **AI shouldn't only answer questions — it should help build and automate the work that follows.**
+
+Mak-AI aims to provide one intelligent workspace where users can move from an idea to an executable process.
+
+<div align="center">
+
+### Ask → Analyze → Build → Automate → Execute
+
+**One workspace. AI-powered.**
+
+</div>
+
+---
+
+# 👨‍💻 Author
+
+### Mark Serrano
+
+**Software Engineer**  
+**AWS Certified Solutions Architect – Associate**
 
 LinkedIn:  
 https://www.linkedin.com/in/mark-serrano-520299250
 
 ---
 
-## Project Status
+<div align="center">
 
-🚧 **Mak-AI is currently under active development.**
+## 🚧 Project Status
 
-The architecture, AI agents, workflow system, and integrations will continue to evolve as new capabilities are added.
+**Mak-AI is currently under active development.**
+
+The AI agent architecture, workflow generation engine, integrations, and automation capabilities are continuously evolving.
+
+<br />
+
+### ⭐ If you find Mak-AI interesting, consider starring the repository.
+
+</div>
