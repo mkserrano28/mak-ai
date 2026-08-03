@@ -78,6 +78,9 @@ app.include_router(
     tags=["Workflow Deployment"],
 )
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
 
 app.include_router(
     ai_router,

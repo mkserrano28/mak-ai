@@ -1,6 +1,6 @@
 from app.database import models
 from app.services.rag_services import build_context, build_sources
-from app.graph.graph import graph
+
 from langchain_core.messages import HumanMessage, AIMessage
 
 
@@ -56,6 +56,7 @@ def save_ai_message(db, chat_id, content):
     return message
 
 async def process_chat(request, db):
+    from app.graph.graph import graph
     
     context, sources, results = build_context(
         request.messages[-1].content,
