@@ -1,6 +1,5 @@
 from app.database import models
 from app.services.rag_services import build_context, build_sources
-
 from langchain_core.messages import HumanMessage, AIMessage
 
 
@@ -58,63 +57,6 @@ def save_ai_message(db, chat_id, content):
 async def process_chat(request, db):
     from app.graph.graph import graph
     
-    context, sources, results = build_context(
-        request.messages[-1].content,
-        document_ids=request.document_ids,
-    )
-    has_context = bool(context.strip())
-
-    if has_context:
-
-        messages = [
-            {
-                "role": "system",
-                "content": f"""
-    You are Mak-AI.
-
-    The user may upload multiple documents.
-
-    If DOCUMENT CONTEXT is provided,
-    answer using the document context whenever it is relevant.
-
-    If the user's question is unrelated to the uploaded documents,
-    answer it normally.
-
-    ========================
-    DOCUMENT CONTEXT
-    ========================
-
-    {context}
-
-    ========================
-    END OF DOCUMENT CONTEXT
-    ========================
-    """
-            }
-        ]
-
-    else:
-
-        messages = [
-            {
-                "role": "system",
-                "content": """
-    You are Mak-AI, a helpful AI assistant.
-
-    Answer naturally and conversationally.
-
-    If the user later uploads documents,
-    you may use them to answer questions.
-    """
-            }
-        ]
-
-
-
-    messages.extend(
-        [message.model_dump() for message in request.messages]
-    )
-
     # Latest user message
     user_message = request.messages[-1]
 
@@ -157,7 +99,10 @@ async def process_chat(request, db):
         "workspace_id": str(chat.workspace_id),
         "memory": {},
         "context": {
-            "document_context": context,
+            "rag": "",
+            "documents": [],
+            "sources": [],
+            "research": {},
         },
         "metadata": {},
         "route": "",
@@ -166,7 +111,7 @@ async def process_chat(request, db):
         "workflow": None,
         "workflow_preview": None,
         "research": None,
-        "sources": sources,
+        "sources": [],
     }
 
     # Run LangGraph asynchronously

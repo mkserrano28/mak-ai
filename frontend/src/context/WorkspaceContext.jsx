@@ -36,6 +36,7 @@ export function WorkspaceProvider({ children }) {
 
     try {
       const data = await getWorkspaces();
+      console.log("Loaded workspaces:", data);
 
       setWorkspaces(data);
 

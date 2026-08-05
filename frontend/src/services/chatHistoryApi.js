@@ -27,6 +27,8 @@ export async function getChat(chatId) {
 }
 
 export async function createChat(workspaceId) {
+  console.log("Creating chat with workspaceId:", workspaceId);
+
   const response = await apiFetch("/api/chats", {
     method: "POST",
     headers: {
@@ -38,7 +40,9 @@ export async function createChat(workspaceId) {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to create chat");
+    const error = await response.json();
+    console.error("Backend error:", error);
+    throw new Error(JSON.stringify(error));
   }
 
   return await response.json();
@@ -50,7 +54,9 @@ export async function deleteChat(chatId) {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to delete chat");
+    const error = await response.json();
+    console.error(error);
+    throw new Error(JSON.stringify(error));
   }
 
   return await response.json();

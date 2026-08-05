@@ -13,22 +13,68 @@ def prompt_builder_node(state):
         "answer",
         ""
     )
+    research_results = research.get("results", [])
+
+    research_context = ""
+
+    for item in research_results[:5]:
+        research_context += f"""
+    Title: {item.get("title", "")}
+    Source: {item.get("url", "")}
+
+    {item.get("content", "")}
+
+"""
 
     messages = []
 
-    system_prompt = f"""
-You are Mak-AI.
+    route = state["route"]
 
-Conversation Summary:
+    if route == "rag":
+        system_prompt = f"""
+    You are Mak-AI.
 
-{summary}
+    Conversation Summary:
 
-Document Context:
-{rag}
+    {summary}
 
-Web Research:
-{research_answer}
-"""
+    Document Context:
+
+    {rag}
+    """
+
+    elif route == "research":
+        system_prompt = f"""
+    You are Mak-AI.
+
+    Use the WEB RESEARCH below as the primary source of truth.
+
+    Do NOT answer from your own training knowledge if the web research contains the answer.
+
+    If the web research includes recent information,
+    never mention your knowledge cutoff.
+
+    Answer using ONLY the information below.
+
+    ========================
+    WEB RESEARCH
+    ========================
+
+    {research_context}
+
+    ========================
+    END WEB RESEARCH
+    ========================
+    """
+
+    else:
+        system_prompt = f"""
+    You are Mak-AI.
+
+    Conversation Summary:
+
+    {summary}
+    """
 
     messages.append(
         {

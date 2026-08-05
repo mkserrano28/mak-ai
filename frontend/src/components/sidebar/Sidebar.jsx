@@ -24,6 +24,7 @@ import {
   getSubscription,
   mockUpgradeToPro,
 } from "../../services/subscriptionApi";
+import CreateWorkspaceModal from "./CreateWorkspaceModal";
 
 const menuItems = [];
 
@@ -34,6 +35,7 @@ export default function Sidebar({ isOpen, onClose, width }) {
   const [showPricing, setShowPricing] = useState(false);
   const [subscription, setSubscription] = useState(null);
   const [upgrading, setUpgrading] = useState(false);
+  const [showWorkspaceModal, setShowWorkspaceModal] = useState(false);
 
   const [user] = useState(() => {
     try {
@@ -76,14 +78,8 @@ export default function Sidebar({ isOpen, onClose, width }) {
     createWorkspace,
   } = useWorkspace();
 
-  const {
-    chats,
-    currentChatId,
-    selectChat,
-    newChat,
-    removeChat,
-    renameCurrentChat,
-  } = useChat();
+  const { chats, chatId, selectChat, newChat, removeChat, renameCurrentChat } =
+    useChat();
 
   const [search, setSearch] = useState("");
 
@@ -218,6 +214,7 @@ export default function Sidebar({ isOpen, onClose, width }) {
 
         <div className="px-5 space-y-2">
           <button
+            onClick={newChat}
             className="
               flex w-full items-center justify-center gap-2
               rounded-xl
@@ -235,16 +232,17 @@ export default function Sidebar({ isOpen, onClose, width }) {
           </button>
 
           <button
+            onClick={() => setShowWorkspaceModal(true)}
             className="
               flex w-full items-center justify-center gap-2
               rounded-xl
               border border-[#252B3A]
               bg-[#111725]
               py-3
-              text-sm text-[#D1D5DB]
+              text-sm
+              text-[#D1D5DB]
               transition
               hover:bg-[#171D2C]
-              hover:text-white
             "
           >
             📁 New Workspace
@@ -267,6 +265,22 @@ export default function Sidebar({ isOpen, onClose, width }) {
             </button>
           ))}
         </div>
+        <CreateWorkspaceModal
+          isOpen={showWorkspaceModal}
+          onClose={() => setShowWorkspaceModal(false)}
+          onCreate={async (name) => {
+            try {
+              const workspace = await createWorkspace(name);
+
+              setCurrentWorkspaceId(workspace.id);
+
+              setShowWorkspaceModal(false);
+            } catch (err) {
+              console.error(err);
+              alert(err.message);
+            }
+          }}
+        />
 
         <div className="mt-5 px-5 text-xs font-semibold">Chats</div>
         <div className="mt-4 px-5">
@@ -309,7 +323,7 @@ export default function Sidebar({ isOpen, onClose, width }) {
               <div
                 key={chat.id}
                 className={`group mb-1 flex items-center justify-between transition ${
-                  currentChatId === chat.id
+                  chatId === chat.id
                     ? "rounded-lg bg-[#171D2C] text-white"
                     : "text-[#9CA3B5]"
                 }`}
@@ -336,9 +350,7 @@ export default function Sidebar({ isOpen, onClose, width }) {
                   <MessageSquare
                     size={16}
                     className={
-                      currentChatId === chat.id
-                        ? "text-white"
-                        : "text-slate-200"
+                      chatId === chat.id ? "text-black" : "text-slate-200"
                     }
                   />
 
@@ -392,8 +404,18 @@ export default function Sidebar({ isOpen, onClose, width }) {
                         onClick={() => {
                           setEditingId(chat.id);
                           setEditingTitle(chat.title);
+                          setOpenMenu(null);
                         }}
-                        className="block w-full px-4 py-2 text-left hover:bg-gray-100"
+                        className="
+                            block
+                            w-full
+                            px-4
+                            py-2
+                            text-left
+                            text-gray-700
+                            hover:bg-gray-100
+                            hover:text-gray-900
+                          "
                       >
                         Rename
                       </button>

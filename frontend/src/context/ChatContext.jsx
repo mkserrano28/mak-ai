@@ -29,6 +29,7 @@ export function ChatProvider({ children }) {
       setCurrentchatId(null);
       return;
     }
+    console.log("currentWorkspaceId:", currentWorkspaceId);
 
     if (!currentWorkspaceId) {
       setChats([]);
@@ -86,7 +87,14 @@ export function ChatProvider({ children }) {
   };
 
   const newChat = async () => {
+    if (!currentWorkspaceId) {
+      alert("Please create or select a workspace first.");
+      return;
+    }
+
     try {
+      console.log("Creating chat in workspace:", currentWorkspaceId);
+
       const chat = await createChat(currentWorkspaceId);
 
       chat.messages = [];
@@ -95,10 +103,9 @@ export function ChatProvider({ children }) {
 
       setCurrentchatId(chat.id);
     } catch (error) {
-      console.error(error);
+      console.error("Failed to create chat:", error);
     }
   };
-
   const removeChat = async (activechatId) => {
     try {
       await deleteChat(activechatId);
@@ -137,6 +144,7 @@ export function ChatProvider({ children }) {
   const sendMessage = async ({ text, attachments }) => {
     if (!text.trim() && attachments.length === 0) return;
 
+    // Now create the user message
     const userMessage = {
       id: Date.now(),
       role: "user",
@@ -147,7 +155,11 @@ export function ChatProvider({ children }) {
     let activeChatId = chatId;
 
     // Automatically create a chat if none exists
+    // Automatically create a chat if none exists
     if (!activeChatId) {
+      console.log("currentWorkspaceId:", currentWorkspaceId);
+      console.log("activeChatId:", activeChatId);
+
       const chat = await createChat(currentWorkspaceId);
 
       await loadChats();
@@ -179,14 +191,10 @@ export function ChatProvider({ children }) {
     setIsTyping(true);
 
     try {
+      // Upload first
       const uploadedFiles = await uploadFiles(attachments, currentWorkspaceId);
 
-      console.log(uploadedFiles);
-      const documentIds = (uploadedFiles?.files || [])
-        .map((file) => file.id)
-        .filter(Boolean);
-
-      console.log("Document IDs:", documentIds);
+      const documentIds = uploadedFiles.map((file) => file.id).filter(Boolean);
 
       const conversation = [...existingMessages, userMessage].map(
         (message) => ({

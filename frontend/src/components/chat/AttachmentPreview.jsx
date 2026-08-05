@@ -2,7 +2,7 @@ import { FileText, X } from "lucide-react";
 
 export default function AttachmentPreview({ file, onRemove }) {
   if (!file) return null;
-
+  const fileName = file.name || file.filename;
   return (
     <div className="inline-flex items-center gap-3 rounded-xl border border-slate-300 bg-white px-3 py-2">
       <div className="flex items-center gap-3">
@@ -18,7 +18,7 @@ export default function AttachmentPreview({ file, onRemove }) {
               text-[#1F2937]
             "
           >
-            {file.name}
+            {fileName}
           </p>
 
           <p className="text-[10px] text-[#64748B]">{file.size}</p>
