@@ -6,8 +6,8 @@ class Settings(BaseSettings):
     TAVILY_API_KEY: str
 
     # Add these two lines
-    N8N_URL: str
-    N8N_API_KEY: str
+    N8N_URL: str = ""
+    N8N_API_KEY: str = ""
 
     model_config = SettingsConfigDict(
         env_file=".env",
