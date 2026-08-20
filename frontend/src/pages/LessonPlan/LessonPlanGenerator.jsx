@@ -154,6 +154,7 @@ export default function LessonPlanGenerator() {
   const [generated, setGenerated] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [lessonPlan, setLessonPlan] = useState(null);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleGenerate = async (prompt) => {
     console.log("Teacher prompt:", prompt);
@@ -165,7 +166,7 @@ export default function LessonPlanGenerator() {
     setIsGenerating(true);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/ilaw/generate", {
+      const response = await fetch(`${API_URL}/api/ilaw/generate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

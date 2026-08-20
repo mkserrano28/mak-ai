@@ -7,6 +7,8 @@ export default function ILAWPreview({ lessonPlan, onBack }) {
   const [modifyPrompt, setModifyPrompt] = useState("");
   const [isModifying, setIsModifying] = useState(false);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const handleSaveAll = () => {
     try {
       localStorage.setItem("makai-ilaw-draft", JSON.stringify(plan));
@@ -23,16 +25,13 @@ export default function ILAWPreview({ lessonPlan, onBack }) {
 
   const handleExportDocx = async () => {
     try {
-      const response = await fetch(
-        "http://127.0.0.1:8000/api/ilaw/export-docx",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(plan),
+      const response = await fetch(`${API_URL}/api/ilaw/export-docx`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(plan),
+      });
 
       if (!response.ok) {
         throw new Error("Failed to generate DOCX");
@@ -70,7 +69,7 @@ export default function ILAWPreview({ lessonPlan, onBack }) {
     try {
       setIsModifying(true);
 
-      const response = await fetch("http://127.0.0.1:8000/api/ilaw/modify", {
+      const response = await fetch(`${API_URL}/api/ilaw/modify`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
