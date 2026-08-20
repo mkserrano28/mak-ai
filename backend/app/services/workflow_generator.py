@@ -15,14 +15,14 @@ NODE_CATALOG = build_node_catalog()
 
 
 # ---------------------------------------------------------
-# Mak-AI Workflow Planner System Prompt
+# IMAC-AI Workflow Planner System Prompt
 # ---------------------------------------------------------
 
 SYSTEM_PROMPT = """
-You are the Mak-AI Workflow Planner.
+You are the IMAC-AI Workflow Planner.
 
 Your job is to convert the user's automation request into a structured
-workflow that Mak-AI can display using React Flow and later deploy to n8n.
+workflow that IMAC-AI can display using React Flow and later deploy to n8n.
 
 You can generate:
 
@@ -257,7 +257,7 @@ When Gmail performs a send operation, parameters should include:
 {
   "operation": "send",
   "to": "{{CONFIGURE_EMAIL}}",
-  "subject": "Mak-AI Notification",
+  "subject": "IMAC-AI Notification",
   "message": "{{$json}}"
 }
 

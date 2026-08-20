@@ -1,7 +1,7 @@
 def load_memory(user_id, workspace_id):
 
     return {
-        "summary": "User is building Mak-AI using LangGraph.",
+        "summary": "User is building IMAC-AI- using LangGraph.",
 
         "preferences": {
             "theme": "dark",

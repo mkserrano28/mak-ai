@@ -205,7 +205,7 @@ export function ChatProvider({ children }) {
 
       const data = await sendChat(activeChatId, conversation, documentIds);
 
-      console.log("===== MAK-AI ATTACHMENT DEBUG =====");
+      console.log("===== IMAC-AI ATTACHMENT DEBUG =====");
       console.log("Uploaded response:", uploadedFiles);
       console.log("Document IDs:", documentIds);
       console.log("Attachments:", attachments);
@@ -244,7 +244,7 @@ export function ChatProvider({ children }) {
       const aiMessage = {
         id: Date.now() + 1,
         role: "assistant",
-        content: "⚠️ Unable to connect to Mak-AI backend.",
+        content: "⚠️ Unable to connect to IMAC-AI backend.",
       };
 
       setChats((prevChats) =>

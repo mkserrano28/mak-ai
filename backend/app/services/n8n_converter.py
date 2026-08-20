@@ -4,7 +4,7 @@ import json
 
 def convert_to_n8n(workflow: dict) -> dict:
     """
-    Convert Mak-AI React Flow format into n8n workflow format.
+    Convert IMAC-AI React Flow format into n8n workflow format.
     """
 
     mak_nodes = workflow.get("nodes", [])
@@ -13,9 +13,6 @@ def convert_to_n8n(workflow: dict) -> dict:
     n8n_nodes = []
     connections = {}
 
-    # -----------------------------
-    # Mak-AI -> n8n node mappings
-    # -----------------------------
 
     NODE_TYPE_MAP = {
         "mak-ai.agent": "@n8n/n8n-nodes-langchain.agent",
@@ -49,10 +46,10 @@ def convert_to_n8n(workflow: dict) -> dict:
             {"x": 0, "y": 0}
         )
 
-        # Get Mak-AI node type
+        # Get IMAC-AI node type
         mak_type = node["type"]
 
-        # Convert Mak-AI type -> n8n type
+        # Convert IMAC-AI type -> n8n type
         node_type = NODE_TYPE_MAP.get(
             mak_type,
             mak_type,
@@ -197,7 +194,7 @@ def convert_to_n8n(workflow: dict) -> dict:
                 source_name,
             )
 
-        # Supported Mak-AI connection types
+        # Supported IMAC-AI connection types
         allowed_connection_types = {
             "main",
             "ai_agent",

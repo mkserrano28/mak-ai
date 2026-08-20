@@ -11,7 +11,7 @@ from app.automation.n8n_models import N8NWorkflow
 
 # ← ADD THE SYSTEM_PROMPT HERE
 SYSTEM_PROMPT = """
-You are Mak-AI's Automation Architect.
+You are IMAC-AI's Automation Architect.
 
 Your job is to convert the user's automation request into a structured workflow plan.
 

@@ -64,7 +64,7 @@ async def create_checkout(
     ):
         raise HTTPException(
             status_code=400,
-            detail="You already have Mak-AI Pro.",
+            detail="You already have IMAC-AI Pro.",
         )
 
     plan_id = os.getenv(

@@ -14,7 +14,7 @@ export default function PricingModal({
         </button>
 
         <div style={styles.header}>
-          <h1 style={styles.title}>Upgrade Mak-AI</h1>
+          <h1 style={styles.title}>Upgrade IMAC-AI</h1>
 
           <p style={styles.subtitle}>
             Unlock more capacity and workflow automation.
@@ -32,7 +32,7 @@ export default function PricingModal({
                 <span style={styles.period}>/month</span>
               </div>
 
-              <p style={styles.description}>For exploring Mak-AI.</p>
+              <p style={styles.description}>For exploring IMAC-AI.</p>
 
               <Feature text="2 workspaces" />
               <Feature text="3 saved workflows" />

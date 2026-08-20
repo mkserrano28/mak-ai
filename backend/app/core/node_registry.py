@@ -31,7 +31,7 @@ NODE_REGISTRY = {
         "category": "action",
         "defaults": {
             "to": "{{CONFIGURE_EMAIL}}",
-            "subject": "Mak-AI Notification",
+            "subject": "IMAC-AI Notification",
             "message": "{{$json}}",
         },
     },
@@ -106,7 +106,7 @@ NODE_REGISTRY = {
     "category": "model",
     "defaults": {
         "provider": "groq",
-        "model": "llama-3.3-70b-versatile",
+        "model": "openai/gpt-oss-120b",
     },
 },
 

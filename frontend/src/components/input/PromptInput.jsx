@@ -64,7 +64,7 @@ export default function PromptInput() {
               rows={1}
               cols={1}
               value={text}
-              placeholder="Ask Mak-AI..."
+              placeholder="Ask IMAC-AI..."
               onChange={(e) => setText(e.target.value)}
               onInput={() => {
                 const el = textareaRef.current;

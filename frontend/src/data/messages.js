@@ -2,7 +2,7 @@ const messages = [
   {
     id: 1,
     role: "assistant",
-    content: "Hi! I'm Mak-AI. How can I help you today?",
+    content: "Hi! I'm IMAC-AI. How can I help you today?",
   },
   {
     id: 2,

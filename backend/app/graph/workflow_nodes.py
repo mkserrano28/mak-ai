@@ -9,7 +9,7 @@ async def workflow_planner_node(state):
     user_request = state["messages"][-1].content
 
     try:
-        # Generate advanced Mak-AI workflow
+        # Generate advanced IMAC-AI workflow
         workflow = await generate_ai_workflow(
             user_request
         )
@@ -17,7 +17,7 @@ async def workflow_planner_node(state):
         workflow_data = workflow.model_dump()
 
         print("\n================================")
-        print("GENERATED MAK-AI WORKFLOW")
+        print("GENERATED IMA-AI WORKFLOW")
         print("================================")
         print(workflow_data)
 

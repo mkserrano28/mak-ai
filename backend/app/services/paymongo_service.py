@@ -64,7 +64,7 @@ async def create_customer(
     name: str,
     email: str,
 ):
-    # Split the Mak-AI user's name for PayMongo.
+    # Split the IMAC-AI user's name for PayMongo.
     parts = name.strip().split(
         maxsplit=1
     )
@@ -122,9 +122,9 @@ async def create_plan():
     payload = {
         "data": {
             "attributes": {
-                "name": "Mak-AI Pro",
+                "name": "IMAC-AI Pro",
                 "description": (
-                    "Mak-AI Pro monthly subscription"
+                    "IMAC-AI Pro monthly subscription"
                 ),
                 "type": "scheduled",
                 "amount": 49900,

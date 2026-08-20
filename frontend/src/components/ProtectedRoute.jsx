@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function ProtectedRoute({ children }) {
   const [authenticated, setAuthenticated] = useState(null);
@@ -47,7 +47,7 @@ export default function ProtectedRoute({ children }) {
   if (authenticated === null) {
     return (
       <div className="min-h-screen bg-[#0f0f0f] flex items-center justify-center">
-        <p className="text-gray-400">Loading Mak-AI...</p>
+        <p className="text-gray-400">Loading IMAC-AI...</p>
       </div>
     );
   }

@@ -11,7 +11,7 @@ client = Groq(
 
 MODEL = os.getenv(
     "MODEL_NAME",
-    "llama-3.3-70b-versatile"
+    "openai/gpt-oss-120b"
 )
 
 

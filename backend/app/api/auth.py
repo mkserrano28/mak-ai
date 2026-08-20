@@ -220,7 +220,7 @@ def resend_verification(
 
     # DEVELOPMENT ONLY
     print(
-        f"New Mak-AI verification code for {user.email}: "
+        f"New IMAC-AI verification code for {user.email}: "
         f"{verification_code}"
     )
 

@@ -52,7 +52,7 @@ def require_feature(user, feature):
             detail={
                 "code": "PRO_REQUIRED",
                 "message": (
-                    "This feature requires Mak-AI Pro."
+                    "This feature requires IMAC-AI Pro."
                 ),
             },
         )

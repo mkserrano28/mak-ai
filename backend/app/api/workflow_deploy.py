@@ -135,7 +135,7 @@ async def deploy_workflow(
     n8n_workflow = {
         "name": payload.get(
             "name",
-            "Mak-AI Workflow",
+            "IMAC-AI Workflow",
         ),
         "nodes": converted["nodes"],
         "connections": converted["connections"],
@@ -203,7 +203,7 @@ async def preview_n8n_workflow(payload: dict):
     print("CONVERTED:", converted)
 
     return {
-        "name": payload.get("name", "Mak-AI Workflow"),
+        "name": payload.get("name", "IMAC-AI Workflow"),
         "nodes": converted["nodes"],
         "connections": converted["connections"],
         "settings": {},

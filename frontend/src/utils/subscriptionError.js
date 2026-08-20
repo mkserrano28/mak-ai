@@ -9,7 +9,7 @@ export function getSubscriptionError(data) {
     return {
       isSubscriptionError: true,
       code: detail.code,
-      message: detail.message || "This feature requires Mak-AI Pro.",
+      message: detail.message || "This feature requires IMAC-AI Pro.",
     };
   }
 

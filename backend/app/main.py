@@ -16,12 +16,13 @@ from app.api.workflow_deploy import router as workflow_deploy_router
 from app.api.ai_workflow import router as ai_router
 from app.api.auth import router as auth_router
 from app.api import subscription
+from app.api.ilaw import router as ilaw_router
 
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    title="Mak-AI API",
+    title="IMAC-AI API",
     version="1.0.0",
     openapi_version="3.0.3",
 )
@@ -95,4 +96,7 @@ app.include_router(
 app.include_router(
     subscription.router,
     prefix="/api",
+)
+app.include_router(
+    ilaw_router,
 )

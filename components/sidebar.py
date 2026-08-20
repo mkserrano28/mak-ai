@@ -8,7 +8,7 @@ def render_sidebar():
         # LOGO
         st.markdown(
             """
-            ## 🤖 Mak-AI
+            ## 🤖 MIMAC-AI
 
             <p style="
                 margin-top:-10px;

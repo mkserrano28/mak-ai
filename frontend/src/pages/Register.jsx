@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, LockKeyhole, Mail, User } from "lucide-react";
 
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = import.meta.env.VITE_API_URL;
 function AIThinkingBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">

@@ -26,7 +26,7 @@ export default function ChatWindow() {
 
         {isTyping && (
           <div className="mt-6 flex items-center gap-3">
-            {/* Mak-AI avatar */}
+            {/* IMAC-AI avatar */}
             <div
               className="
                 flex h-9 w-9 shrink-0 items-center justify-center

@@ -7,37 +7,21 @@ import {
   Bot,
   MessageSquare,
   Workflow,
+  BookOpen,
 } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const actions = [
   {
-    icon: FileText,
-    title: "Analyze PDF",
-  },
-  {
-    icon: Globe,
-    title: "Web Search",
-  },
-  {
-    icon: Presentation,
-    title: "Generate PPT",
-  },
-  {
-    icon: Receipt,
-    title: "Invoice AI",
-  },
-  {
-    icon: Image,
-    title: "AI Vision",
-  },
-  {
-    icon: Bot,
-    title: "AI Agents",
+    icon: BookOpen,
+    title: "Lesson Planner",
+    description: "Create ILAW lesson plans",
   },
 ];
 
 export default function EmptyState() {
+  const navigate = useNavigate();
   const [mode, setMode] = useState("chat");
 
   return (
@@ -54,7 +38,7 @@ export default function EmptyState() {
           px-2
         "
     >
-      {/* Mak-AI Orbital Logo */}
+      {/* IMAC-AI Orbital Logo */}
       <div className="relative mb-6 flex h-24 w-24 items-center justify-center">
         {/* Outer orbit */}
         <div
@@ -188,6 +172,11 @@ export default function EmptyState() {
             <button
               type="button"
               key={item.title}
+              onClick={() => {
+                if (item.title === "Lesson Planner") {
+                  navigate("/lesson-plan");
+                }
+              }}
               className="
                 group
                 flex

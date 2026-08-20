@@ -18,9 +18,9 @@ def send_verification_email(
     verification_code: str,
 ):
     params = {
-        "from": f"Mak-AI <{EMAIL_FROM}>",
+        "from": f"IMAC-AI <{EMAIL_FROM}>",
         "to": [email],
-        "subject": "Verify your Mak-AI account",
+        "subject": "Verify your IMAC-AI account",
         "html": f"""
         <div style="
             font-family: Arial, sans-serif;
@@ -29,13 +29,13 @@ def send_verification_email(
             padding: 32px;
         ">
             <h1 style="margin-bottom: 8px;">
-                Mak-AI
+                IMAC-AI
             </h1>
 
             <h2>Verify your email</h2>
 
             <p>
-                Welcome to Mak-AI.
+                Welcome to IMAC-AI.
             </p>
 
             <p>
@@ -61,7 +61,7 @@ def send_verification_email(
                 font-size: 13px;
                 margin-top: 32px;
             ">
-                If you didn't create a Mak-AI account,
+                If you didn't create a IMAC-AI account,
                 you can ignore this email.
             </p>
         </div>

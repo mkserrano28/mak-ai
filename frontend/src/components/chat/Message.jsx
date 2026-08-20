@@ -48,9 +48,9 @@ export default function Message({ message }) {
           <MarkdownRenderer content={message.content} />
         </div>
       ) : (
-        /* MAK-AI MESSAGE */
+        /* IMAC-AI MESSAGE */
         <div className="flex w-full items-start gap-3">
-          {/* Mak-AI Avatar */}
+          {/* IMAC-AI Avatar */}
           <div
             className="
               mt-1

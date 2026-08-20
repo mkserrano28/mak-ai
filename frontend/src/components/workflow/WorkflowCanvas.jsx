@@ -47,7 +47,7 @@ function buildNodes(workflow) {
   }
 
   return workflowData.nodes.map((node) => {
-    // New Mak-AI format:
+    // New IMAC-AI format:
     // position: { x: 100, y: 200 }
     //
     // Old n8n format:
@@ -103,7 +103,7 @@ function buildEdges(workflow) {
   const workflowData = workflow.workflow ?? workflow;
 
   // --------------------------------
-  // NEW MAK-AI FORMAT
+  // New IMAC-AI FORMAT
   // --------------------------------
 
   if (Array.isArray(workflowData.edges)) {
@@ -236,7 +236,7 @@ export default function WorkflowCanvas({ workflow }) {
         parameters: {
           operation: "send",
           to: "{{CONFIGURE_EMAIL}}",
-          subject: "Mak-AI Notification",
+          subject: "IMAC-AI Notification",
           message: "{{$json}}",
         },
       },
@@ -596,7 +596,7 @@ export default function WorkflowCanvas({ workflow }) {
         setSubscription(updated);
         setShowPricing(false);
 
-        alert("Welcome to Mak-AI Pro!");
+        alert("Welcome to IMAC-AI Pro!");
       } catch (error) {
         console.error("Upgrade failed:", error);
 

@@ -32,7 +32,7 @@ def prompt_builder_node(state):
 
     if route == "rag":
         system_prompt = f"""
-    You are Mak-AI.
+    You are IMAC-AI.
 
     Conversation Summary:
 
@@ -45,7 +45,7 @@ def prompt_builder_node(state):
 
     elif route == "research":
         system_prompt = f"""
-    You are Mak-AI.
+    You are IMAC-AI.
 
     Use the WEB RESEARCH below as the primary source of truth.
 
@@ -69,7 +69,7 @@ def prompt_builder_node(state):
 
     else:
         system_prompt = f"""
-    You are Mak-AI.
+    You are IMAC-AI.
 
     Conversation Summary:
 

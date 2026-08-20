@@ -134,5 +134,5 @@ def handle_uploads(
                     st.rerun()
 
     return st.chat_input(
-        "Ask Mak-AI..."
+        "Ask IMAC-AI..."
     )

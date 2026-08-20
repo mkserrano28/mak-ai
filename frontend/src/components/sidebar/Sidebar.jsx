@@ -10,6 +10,7 @@ import {
   User,
   ChevronUp,
   X,
+  BookOpen,
 } from "lucide-react";
 
 import Button from "../ui/Button";
@@ -129,7 +130,7 @@ export default function Sidebar({ isOpen, onClose, width }) {
 
       setSubscription(updated);
 
-      alert("Welcome to Mak-AI Pro! 🎉");
+      alert("Welcome to IMAC-AI Pro!");
 
       setShowPricing(false);
     } catch (error) {
@@ -189,7 +190,7 @@ export default function Sidebar({ isOpen, onClose, width }) {
                   <div className="makai-logo-dot" />
                 </div>
 
-                <h1 className="text-xl font-bold tracking-tight">Mak-AI</h1>
+                <h1 className="text-xl font-bold tracking-tight">IMAC-AI</h1>
               </div>
               <button
                 type="button"
@@ -281,6 +282,37 @@ export default function Sidebar({ isOpen, onClose, width }) {
             }
           }}
         />
+        <div className="mt-4 px-5">
+          <button
+            type="button"
+            onClick={() => {
+              navigate("/lesson-plan");
+              onClose();
+            }}
+            className="
+      flex w-full items-center gap-3
+      rounded-xl
+      border border-[#252B3A]
+      bg-[#111725]
+      px-3 py-3
+      text-sm
+      text-[#D1D5DB]
+      transition
+      hover:bg-[#171D2C]
+      hover:text-white
+    "
+          >
+            <BookOpen size={18} className="text-[#A855F7]" />
+
+            <div className="text-left">
+              <div className="font-medium">Lesson Planner</div>
+
+              <div className="text-[10px] text-[#6B7280]">
+                Create ILAW lesson plans
+              </div>
+            </div>
+          </button>
+        </div>
 
         <div className="mt-5 px-5 text-xs font-semibold">Chats</div>
         <div className="mt-4 px-5">
@@ -457,7 +489,7 @@ export default function Sidebar({ isOpen, onClose, width }) {
             >
               <div className="border-b border-gray-100 px-4 py-3">
                 <p className="truncate text-sm font-semibold text-[#F5F5F7]">
-                  {user?.name || "Mak-AI User"}
+                  {user?.name || "IMAC-AI User"}
                 </p>
 
                 <p className="mt-1 truncate text-xs text-gray-500">
@@ -588,7 +620,7 @@ export default function Sidebar({ isOpen, onClose, width }) {
 
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-semibold text-[#F5F5F7]">
-                {user?.name || "Mak-AI User"}
+                {user?.name || "IMAC-AI User"}
               </p>
 
               <p className="truncate text-xs text-[#8B93A5] capitalize">
