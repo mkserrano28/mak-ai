@@ -17,6 +17,12 @@ from app.api.ai_workflow import router as ai_router
 from app.api.auth import router as auth_router
 from app.api import subscription
 from app.api.ilaw import router as ilaw_router
+from app.api.ppt import router as ppt_router
+from app.api.quiz import router as quiz_router
+from app.api.file_converter import router as file_converter_router
+from app.api.chat import router as chat_router
+from app.api.bamboozle import router as bamboozle_router
+from app.api.exam_generator import router as exam_generator_router
 
 
 Base.metadata.create_all(bind=engine)
@@ -99,4 +105,41 @@ app.include_router(
 )
 app.include_router(
     ilaw_router,
+)
+app.include_router(
+    ppt_router,
+    prefix="/api",
+    tags=["PowerPoint"],
+)
+app.include_router(quiz_router)
+
+app.include_router(file_converter_router)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(
+    chat_router,
+    prefix="/api",
+    tags=["Chat"],
+)
+
+app.include_router(
+    bamboozle_router,
+    prefix="/api/bamboozle",
+    tags=["Bamboozle"],
+)
+
+app.include_router(
+    exam_generator_router,
+    prefix="/api/exam-generator",
+    tags=["Exam Generator"],
 )

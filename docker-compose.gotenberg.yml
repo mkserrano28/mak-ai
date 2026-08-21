@@ -1,0 +1,10 @@
+services:
+  gotenberg:
+    image: gotenberg/gotenberg:8
+    container_name: makai-gotenberg
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      API_TIMEOUT: "180s"
+      API_BODY_LIMIT: "30MB"

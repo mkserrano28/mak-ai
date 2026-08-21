@@ -282,37 +282,6 @@ export default function Sidebar({ isOpen, onClose, width }) {
             }
           }}
         />
-        <div className="mt-4 px-5">
-          <button
-            type="button"
-            onClick={() => {
-              navigate("/lesson-plan");
-              onClose();
-            }}
-            className="
-      flex w-full items-center gap-3
-      rounded-xl
-      border border-[#252B3A]
-      bg-[#111725]
-      px-3 py-3
-      text-sm
-      text-[#D1D5DB]
-      transition
-      hover:bg-[#171D2C]
-      hover:text-white
-    "
-          >
-            <BookOpen size={18} className="text-[#A855F7]" />
-
-            <div className="text-left">
-              <div className="font-medium">Lesson Planner</div>
-
-              <div className="text-[10px] text-[#6B7280]">
-                Create ILAW lesson plans
-              </div>
-            </div>
-          </button>
-        </div>
 
         <div className="mt-5 px-5 text-xs font-semibold">Chats</div>
         <div className="mt-4 px-5">

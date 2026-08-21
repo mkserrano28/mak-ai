@@ -1,6 +1,7 @@
 from app.database import models
 from app.services.rag_services import build_context, build_sources
 from langchain_core.messages import HumanMessage, AIMessage
+from pathlib import Path
 
 
 
@@ -130,26 +131,64 @@ async def process_chat(request, db):
     print(result)
     print("====================")
     # Workflow Preview
-    if result.get("workflow_preview"):
+    # Return structured response
+
+    # --------------------------------
+    # PowerPoint
+    # --------------------------------
+    powerpoint = (
+        result.get("context", {})
+        .get("powerpoint")
+    )
+
+    if powerpoint:
+        file_path = powerpoint.get("file_path") or powerpoint.get("file")
+
+        filename = None
+
+        if file_path:
+            filename = Path(file_path).name
 
         return {
-            "type": "workflow_preview",
-            "response": reply,
-            "workflow_preview": result["workflow_preview"],
-            "sources": result.get("sources", []),
+            "type": "powerpoint",
+            "response": "Your PowerPoint presentation is ready.",
+            "powerpoint": {
+                "title": powerpoint.get("title"),
+                "filename": filename,
+                "download_url": (
+                    f"/api/ppt/download/{filename}"
+                    if filename
+                    else None
+                ),
+            },
         }
 
+
+    # --------------------------------
+    # Workflow
+    # --------------------------------
+    if result.get("workflow"):
+
+        return {
+            "type": "workflow",
+            "workflow": result["workflow"],
+        }
+
+
+    # --------------------------------
     # Research
+    # --------------------------------
     elif result.get("research"):
 
         return {
             "type": "research",
             "results": result["research"],
         }
-    
 
 
-    # Normal chat
+    # --------------------------------
+    # Normal text
+    # --------------------------------
     return {
         "type": "text",
         "response": reply,

@@ -6,6 +6,10 @@ import Register from "./pages/Register";
 import VerifyEmail from "./pages/VerifyEmail";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LessonPlanGenerator from "./pages/LessonPlan/LessonPlanGenerator";
+import QuizChecker from "./pages/QuizChecker";
+import FileConverter from "./pages/FileConverter";
+import Bamboozle from "./pages/Games/Bamboozle";
+import ExamGenerator from "./pages/ExamGenerator";
 
 export default function App() {
   return (
@@ -16,6 +20,38 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/lesson-plan" element={<LessonPlanGenerator />} />
+        <Route
+          path="/file-converter"
+          element={
+            <ProtectedRoute>
+              <FileConverter />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/bamboozle"
+          element={
+            <ProtectedRoute>
+              <Bamboozle />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/quiz-checker"
+          element={
+            <ProtectedRoute>
+              <QuizChecker />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/exam-generator"
+          element={
+            <ProtectedRoute>
+              <ExamGenerator />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/chat"
           element={

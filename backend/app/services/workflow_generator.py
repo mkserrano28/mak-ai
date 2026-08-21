@@ -492,7 +492,7 @@ USER REQUEST:
 
 {prompt}
 
-Create one complete Mak-AI workflow that satisfies all compatible
+Create one complete IMAC-AI workflow that satisfies all compatible
 requirements.
 
 Return JSON only.
@@ -501,7 +501,7 @@ Return JSON only.
     ]
 
     # -----------------------------------------------------
-    # Generate workflow using the existing Mak-AI LLM
+    # Generate workflow using the existing IMAC-AI LLM
     # -----------------------------------------------------
 
     response = generate_response(messages)
@@ -592,7 +592,7 @@ Return JSON only.
 
 
     # -----------------------------------------------------
-    # Validate against the Mak-AI workflow schema
+    # Validate against the IMAC-AI workflow schema
     # -----------------------------------------------------
 
     try:

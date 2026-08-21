@@ -12,7 +12,8 @@ def web_search(
     max_results: int = 5,
 ):
     """
-    Perform an AI-optimized web search.
+    Perform an AI-optimized web search
+    with text and image results.
     """
 
     return client.search(
@@ -21,4 +22,8 @@ def web_search(
         max_results=max_results,
         include_answer=True,
         include_raw_content=False,
+
+        # Images for PowerPoint generation
+        include_images=True,
+        include_image_descriptions=True,
     )

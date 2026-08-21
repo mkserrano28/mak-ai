@@ -1,13 +1,9 @@
 import {
-  FileText,
-  Globe,
-  Presentation,
-  Receipt,
-  Image,
-  Bot,
-  MessageSquare,
-  Workflow,
   BookOpen,
+  ClipboardCheck,
+  FileOutput,
+  Gamepad2,
+  FileText,
 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +13,26 @@ const actions = [
     icon: BookOpen,
     title: "Lesson Planner",
     description: "Create ILAW lesson plans",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Quiz Checker",
+    description: "Check student quiz papers",
+  },
+  {
+    icon: FileOutput,
+    title: "File Converter",
+    description: "Convert documents and files",
+  },
+  {
+    icon: Gamepad2,
+    title: "Bamboozle",
+    description: "Classroom team challenge",
+  },
+  {
+    icon: FileText,
+    title: "Exam Generator",
+    description: "Create exams and download Word files",
   },
 ];
 
@@ -175,6 +191,19 @@ export default function EmptyState() {
               onClick={() => {
                 if (item.title === "Lesson Planner") {
                   navigate("/lesson-plan");
+                }
+
+                if (item.title === "Quiz Checker") {
+                  navigate("/quiz-checker");
+                }
+                if (item.title === "File Converter") {
+                  navigate("/file-converter");
+                }
+                if (item.title === "Bamboozle") {
+                  navigate("/bamboozle");
+                }
+                if (item.title === "Exam Generator") {
+                  navigate("/exam-generator");
                 }
               }}
               className="

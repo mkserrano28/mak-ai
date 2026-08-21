@@ -13,6 +13,10 @@ MODEL = os.getenv(
     "MODEL_NAME",
     "openai/gpt-oss-120b"
 )
+QUIZ_VISION_MODEL = os.getenv(
+    "QUIZ_VISION_MODEL",
+    "qwen/qwen3.6-27b"
+)
 
 
 MAX_MESSAGES = 12
@@ -118,6 +122,52 @@ def generate_response(messages: list) -> str:
         messages=safe_messages,
         temperature=0.7,
         stream=False,
+    )
+
+    return response.choices[0].message.content
+
+def analyze_quiz_image(
+    image_base64: str,
+    prompt: str,
+    mime_type: str = "image/jpeg",
+) -> str:
+
+    response = client.chat.completions.create(
+        model=QUIZ_VISION_MODEL,
+
+        messages=[
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": prompt,
+                    },
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": (
+                                f"data:{mime_type};base64,"
+                                f"{image_base64}"
+                            ),
+                        },
+                    },
+                ],
+            }
+        ],
+
+        # Important for quiz extraction.
+        reasoning_effort="none",
+
+        temperature=0,
+
+        max_completion_tokens=4096,
+
+        stream=False,
+
+        response_format={
+            "type": "json_object"
+        },
     )
 
     return response.choices[0].message.content

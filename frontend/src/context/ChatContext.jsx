@@ -226,6 +226,9 @@ export function ChatProvider({ children }) {
         content: data.response,
         sources: data.sources || [],
         workflowPreview: data.workflow_preview || null,
+
+        // PowerPoint
+        powerpoint: data.powerpoint || null,
       };
 
       setChats((prevChats) =>

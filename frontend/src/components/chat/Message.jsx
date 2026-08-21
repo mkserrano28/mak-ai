@@ -104,6 +104,31 @@ export default function Message({ message }) {
               <>
                 <MarkdownRenderer content={message.content} />
 
+                {message.powerpoint && (
+                  <a
+                    href={`http://127.0.0.1:8000${message.powerpoint.download_url}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="
+                          mt-4
+                          inline-flex
+                          items-center
+                          gap-2
+                          rounded-lg
+                          bg-[#5B4CFF]
+                          px-4
+                          py-2
+                          text-sm
+                          font-medium
+                          text-white
+                          transition
+                          hover:bg-[#6D5CFF]
+                        "
+                  >
+                    📊 Download PowerPoint
+                  </a>
+                )}
+
                 <MessageSources sources={message.sources} />
               </>
             )}

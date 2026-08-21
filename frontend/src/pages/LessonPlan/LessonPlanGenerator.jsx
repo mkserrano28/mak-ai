@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PromptBox from "../../components/lesson-plan/PromptBox";
 import ILAWPreview from "./ILAWPreview";
+import { useNavigate } from "react-router-dom";
 
 const mockLessonPlan = {
   lesson_information: {
@@ -151,6 +152,7 @@ const mockLessonPlan = {
 };
 
 export default function LessonPlanGenerator() {
+  const navigate = useNavigate();
   const [generated, setGenerated] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [lessonPlan, setLessonPlan] = useState(null);
@@ -212,13 +214,32 @@ export default function LessonPlanGenerator() {
 
   return (
     <div className="min-h-screen bg-[#0b0f19] text-white">
-      <header className="border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-6 py-4">
-          <button className="text-sm text-gray-400 hover:text-white">
-            ← Teacher Workspace
-          </button>
-        </div>
-      </header>
+      <button
+        onClick={() => navigate("/chat")}
+        className="
+                mb-6
+                inline-flex
+                items-center
+                gap-2
+                rounded-xl
+                border
+                border-slate-700
+                bg-gradient-to-r
+                from-[#5B4CFF]
+                via-[#7C3AED]
+                to-[#A855F7]
+                px-4
+                py-2
+                text-xs
+                font-medium
+                text-slate-300
+                transition
+                hover:bg-slate-800
+                hover:text-white
+            "
+      >
+        ← Back to Dashboard
+      </button>
 
       <main className="flex min-h-[calc(100vh-73px)] items-center justify-center px-6 py-12">
         <div className="flex w-full flex-col items-center">

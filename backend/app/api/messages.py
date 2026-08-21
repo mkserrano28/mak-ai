@@ -14,7 +14,8 @@ from app.database.models import (
     User,
     Workspace,
 )
-
+from langchain_core.messages import HumanMessage
+from app.graph.graph import graph
 
 router = APIRouter()
 
@@ -60,4 +61,67 @@ def create_message(
     db.commit()
     db.refresh(message)
 
-    return message
+    # --------------------------------
+    # Run Mak-AI LangGraph
+    # --------------------------------
+
+    state = {
+        "messages": [
+            HumanMessage(content=request.content)
+        ],
+
+        "user_id": str(current_user.id),
+
+        "workspace_id": str(chat.workspace_id),
+
+        "memory": {
+            "summary": "",
+            "preferences": {},
+            "profile": {},
+        },
+
+        "context": {
+            "rag": "",
+            "documents": [],
+            "sources": [],
+            "research": {},
+        },
+
+        "metadata": {},
+
+        "route": "",
+
+        "prompt": [],
+
+        "response": "",
+
+        "workflow": None,
+
+        "workflow_preview": None,
+
+        "research": None,
+
+        "sources": [],
+    }
+
+    print("================================")
+    print("RUNNING MAK-AI LANGGRAPH")
+    print("================================")
+
+    result = graph.invoke(state)
+
+    print("================================")
+    print("LANGGRAPH COMPLETE")
+    print("================================")
+    print(result.get("route"))
+    print(result.get("response"))
+
+    return {
+        "message": message,
+        "type": result.get("route"),
+        "response": result.get("response", ""),
+        "powerpoint": result.get("context", {}).get("powerpoint"),
+        "workflow": result.get("workflow"),
+        "workflow_preview": result.get("workflow_preview"),
+        "sources": result.get("sources", []),
+    }

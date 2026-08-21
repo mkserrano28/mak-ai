@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚡ Mak-AI
+# ⚡ IMAC-AI
 
 ### AI Chat • AI Agents • Workflow Automation
 
@@ -10,9 +10,9 @@
 
 ---
 
-## About Mak-AI
+## About IMAC-AI
 
-Mak-AI is a full-stack AI platform that combines **AI chat, document intelligence, AI agents, and workflow automation** in one workspace.
+IMAC-AI is a full-stack AI platform that combines **AI chat, document intelligence, AI agents, and workflow automation** in one workspace.
 
 One of its core capabilities is generating **n8n workflows from natural-language requests**.
 
@@ -20,7 +20,7 @@ For example:
 
 > "Create a workflow that receives an invoice, extracts the data, saves it to PostgreSQL, and sends a Slack notification."
 
-Mak-AI can understand the request and generate the workflow structure automatically.
+IMAC-AI can understand the request and generate the workflow structure automatically.
 
 ---
 
@@ -106,7 +106,7 @@ Mak-AI can understand the request and generate the workflow structure automatica
 
 **LangGraph** handles AI agent orchestration and multi-step AI processes.
 
-**n8n** handles workflow automation and integrations, while Mak-AI can generate n8n workflows from user prompts.
+**n8n** handles workflow automation and integrations, while IMAC-AI can generate n8n workflows from user prompts.
 
 ---
 
@@ -217,7 +217,7 @@ EMAIL_FROM=onboarding@resend.dev
 User Prompt
      │
      ▼
-   Mak-AI
+   IMAC-AI
      │
      ▼
 LangGraph Agent
@@ -288,6 +288,6 @@ https://www.linkedin.com/in/mark-serrano-520299250
 
 <div align="center">
 
-**🚧 Mak-AI is currently under active development.**
+**🚧 IMAC-AI is currently under active development.**
 
 </div>

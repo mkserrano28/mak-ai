@@ -8,6 +8,7 @@ from .nodes import (
     rag_node,
     research_node,
     chat_node,
+    powerpoint_node,
 )
 from app.graph.workflow_nodes import workflow_planner_node
 
@@ -17,6 +18,7 @@ builder.add_node("planner", planner_node)
 builder.add_node("memory", memory_node)
 builder.add_node("rag", rag_node)
 builder.add_node("research", research_node)
+builder.add_node("powerpoint", powerpoint_node)
 builder.add_node("prompt", prompt_builder_node)
 builder.add_node("chat", chat_node)
 builder.add_node("workflow_planner", workflow_planner_node)
@@ -30,15 +32,28 @@ builder.add_conditional_edges(
         "chat": "prompt",
         "rag": "memory",
         "research": "research",
+        "powerpoint": "research",
         "workflow": "workflow_planner",
     },
 )
 
 builder.add_edge("memory", "rag")
 builder.add_edge("rag", "prompt")
-builder.add_edge("research", "prompt")
+builder.add_conditional_edges(
+    "research",
+    lambda state: (
+        "powerpoint"
+        if state["route"] == "powerpoint"
+        else "prompt"
+    ),
+    {
+        "powerpoint": "powerpoint",
+        "prompt": "prompt",
+    },
+)
 builder.add_edge("prompt", "chat")
 builder.add_edge("chat", END)
+builder.add_edge("powerpoint", END)
 builder.add_edge(
     "workflow_planner",
     END
