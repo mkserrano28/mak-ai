@@ -263,3 +263,95 @@ Do not add text outside the JSON.
             for index, question in enumerate(all_questions)
         ],
     }
+
+@router.post("/download")
+async def download_exam(exam: ExamResponse):
+
+    document = Document()
+
+    title = document.add_paragraph()
+    title_run = title.add_run(exam.title)
+    title_run.bold = True
+    title_run.font.size = Pt(18)
+    title.alignment = 1
+
+    document.add_paragraph()
+
+    document.add_paragraph(
+        "Name: ______________________________________________"
+    )
+
+    document.add_paragraph(
+        "Section: _____________________________________________"
+    )
+
+    document.add_paragraph(
+        "Date: _________________________________________________"
+    )
+
+    document.add_paragraph()
+
+    instruction_title = document.add_paragraph()
+    instruction_run = instruction_title.add_run("Instructions")
+    instruction_run.bold = True
+
+    document.add_paragraph(exam.instructions)
+
+    document.add_paragraph()
+
+    for index, question in enumerate(exam.questions, start=1):
+
+        number = question.get("number", index)
+        question_text = question.get("question", "")
+
+        paragraph = document.add_paragraph()
+        run = paragraph.add_run(
+            f"{number}. {question_text}"
+        )
+        run.font.size = Pt(11)
+
+        choices = question.get("choices", {})
+
+        for letter in ["A", "B", "C", "D"]:
+            document.add_paragraph(
+                f"   {letter}. {choices.get(letter, '')}"
+            )
+
+        document.add_paragraph()
+
+    document.add_page_break()
+
+    answer_title = document.add_paragraph()
+    answer_run = answer_title.add_run("ANSWER KEY")
+    answer_run.bold = True
+    answer_run.font.size = Pt(16)
+
+    for item in exam.answer_key:
+
+        paragraph = document.add_paragraph()
+
+        paragraph.add_run(
+            f"{item['number']}. {item['answer']}"
+        ).bold = True
+
+        if item.get("explanation"):
+            document.add_paragraph(
+                f"Explanation: {item['explanation']}"
+            )
+
+    output = BytesIO()
+    document.save(output)
+    output.seek(0)
+
+    return StreamingResponse(
+        output,
+        media_type=(
+            "application/vnd.openxmlformats-officedocument."
+            "wordprocessingml.document"
+        ),
+        headers={
+            "Content-Disposition": (
+                'attachment; filename="Mak-AI-Exam.docx"'
+            )
+        },
+    )
