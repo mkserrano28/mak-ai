@@ -1,3 +1,35 @@
+import json
+import re
+
+from io import BytesIO
+
+from fastapi import APIRouter, HTTPException
+from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
+
+from docx import Document
+from docx.shared import Pt
+
+from app.services.llm import generate_response
+
+
+router = APIRouter()
+
+
+class ExamRequest(BaseModel):
+    prompt: str
+
+
+class ExamResponse(BaseModel):
+    title: str
+    instructions: str
+    questions: list
+    answer_key: list
+
+
+
+
+
 @router.post("/generate", response_model=ExamResponse)
 async def generate_exam(request: ExamRequest):
 
