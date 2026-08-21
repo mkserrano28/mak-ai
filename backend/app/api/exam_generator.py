@@ -1,31 +1,3 @@
-import json
-import re
-
-from fastapi import APIRouter, HTTPException
-from fastapi.responses import StreamingResponse
-from pydantic import BaseModel
-from io import BytesIO
-
-from docx import Document
-from docx.shared import Pt
-
-from app.services.llm import generate_response
-
-
-router = APIRouter()
-
-
-class ExamRequest(BaseModel):
-    prompt: str
-
-
-class ExamResponse(BaseModel):
-    title: str
-    instructions: str
-    questions: list
-    answer_key: list
-
-
 @router.post("/generate", response_model=ExamResponse)
 async def generate_exam(request: ExamRequest):
 
@@ -35,41 +7,78 @@ async def generate_exam(request: ExamRequest):
             detail="Please enter an exam prompt."
         )
 
-    prompt = f"""
+    # Detect requested number of items from the teacher prompt.
+    number_match = re.search(
+        r"\b(\d+)\s*(?:items?|questions?)\b",
+        request.prompt,
+        flags=re.IGNORECASE,
+    )
+
+    if number_match:
+        total_questions = int(number_match.group(1))
+    else:
+        total_questions = 20
+
+    # Keep the generator within a reasonable range.
+    total_questions = max(1, min(total_questions, 50))
+
+    # Generate in smaller batches to avoid truncated JSON.
+    BATCH_SIZE = 10
+
+    all_questions = []
+    exam_title = "Mak-AI Generated Exam"
+    exam_instructions = "Choose the best answer."
+
+    for batch_start in range(0, total_questions, BATCH_SIZE):
+
+        batch_count = min(
+            BATCH_SIZE,
+            total_questions - batch_start
+        )
+
+        start_number = batch_start + 1
+        end_number = batch_start + batch_count
+
+        prompt = f"""
 You are Mak-AI, an educational exam generator.
 
-Create an exam based on this teacher request:
+Create questions {start_number} through {end_number}
+of an exam based on this teacher request:
 
 {request.prompt}
+
+The complete exam requires {total_questions} questions.
+
+For THIS REQUEST, generate exactly {batch_count} questions.
+
+Question numbers MUST start at {start_number}
+and end at {end_number}.
 
 Requirements:
 
 1. Follow the requested grade level and subject.
 2. Follow the requested number of items.
-3. If the teacher does not specify a number of items,
-   create 20 items.
-4. Make the questions appropriate for the requested grade.
-5. Avoid duplicate questions.
-6. Make questions clear and classroom-ready.
-7. Use multiple-choice questions unless the teacher
+3. Make the questions appropriate for the requested grade.
+4. Avoid duplicate questions.
+5. Make questions clear and classroom-ready.
+6. Use multiple-choice questions unless the teacher
    specifically requests another format.
-8. Each multiple-choice question must have exactly
+7. Each multiple-choice question must have exactly
    four choices: A, B, C, D.
-9. Include the correct answer.
-10. Include a short explanation for every answer.
-11. Create a clear exam title.
-12. Create simple exam instructions.
+8. Include the correct answer.
+9. Include a short explanation for every answer.
+10. Do not repeat questions from previous batches.
+11. Make the questions progressively varied.
+12. The answer MUST be one of A, B, C, or D.
 
 Return ONLY valid JSON.
 
 Use this exact structure:
 
 {{
-  "title": "Exam Title",
-  "instructions": "Exam instructions",
   "questions": [
     {{
-      "number": 1,
+      "number": {start_number},
       "question": "Question text",
       "choices": {{
         "A": "Choice A",
@@ -88,219 +97,137 @@ Do not return ```json.
 Do not add text outside the JSON.
 """
 
-    try:
+        try:
 
-        result = generate_response([
-            {
-                "role": "system",
-                "content": (
-                    "You are a reliable educational exam generator. "
-                    "Return strict JSON when requested."
-                ),
-            },
-            {
-                "role": "user",
-                "content": prompt,
-            },
-        ])
-
-        if not isinstance(result, str):
-            result = str(result)
-
-        result = result.strip()
-
-        result = re.sub(
-            r"^```json\s*",
-            "",
-            result,
-            flags=re.IGNORECASE,
-        )
-
-        result = re.sub(
-            r"^```\s*",
-            "",
-            result,
-        )
-
-        result = re.sub(
-            r"\s*```$",
-            "",
-            result,
-        )
-
-        data = json.loads(result)
-
-        questions = data.get("questions", [])
-
-        if not questions:
-            raise ValueError("No questions were generated.")
-
-        return {
-            "title": data.get(
-                "title",
-                "Mak-AI Generated Exam"
-            ),
-            "instructions": data.get(
-                "instructions",
-                "Choose the best answer."
-            ),
-            "questions": questions,
-            "answer_key": [
-                {
-                    "number": q.get("number", index + 1),
-                    "answer": q.get("answer", ""),
-                    "explanation": q.get(
-                        "explanation",
-                        ""
-                    ),
-                }
-                for index, q in enumerate(questions)
-            ],
-        }
-
-    except json.JSONDecodeError as error:
-
-        print("Exam JSON error:", error)
-
-        raise HTTPException(
-            status_code=500,
-            detail="Mak-AI returned an invalid exam format."
-        )
-
-    except Exception as error:
-
-        print("Exam generation error:", error)
-
-        raise HTTPException(
-            status_code=500,
-            detail="Unable to generate the exam."
-        )
-
-
-@router.post("/download")
-async def download_exam(exam: ExamResponse):
-
-    document = Document()
-
-    # Title
-    title = document.add_paragraph()
-
-    title_run = title.add_run(exam.title)
-    title_run.bold = True
-    title_run.font.size = Pt(18)
-
-    title.alignment = 1
-
-    document.add_paragraph()
-
-    # Student information
-    document.add_paragraph(
-        "Name: ______________________________________________"
-    )
-
-    document.add_paragraph(
-        "Section: _____________________________________________"
-    )
-
-    document.add_paragraph(
-        "Date: _________________________________________________"
-    )
-
-    document.add_paragraph()
-
-    # Instructions
-    instruction_title = document.add_paragraph()
-
-    instruction_run = instruction_title.add_run(
-        "Instructions"
-    )
-
-    instruction_run.bold = True
-
-    document.add_paragraph(
-        exam.instructions
-    )
-
-    document.add_paragraph()
-
-    # Questions
-    for index, question in enumerate(
-        exam.questions,
-        start=1
-    ):
-
-        number = question.get(
-            "number",
-            index
-        )
-
-        question_text = question.get(
-            "question",
-            ""
-        )
-
-        paragraph = document.add_paragraph()
-
-        run = paragraph.add_run(
-            f"{number}. {question_text}"
-        )
-
-        run.font.size = Pt(11)
-
-        choices = question.get(
-            "choices",
-            {}
-        )
-
-        for letter in ["A", "B", "C", "D"]:
-
-            document.add_paragraph(
-                f"   {letter}. {choices.get(letter, '')}"
+            result = generate_response(
+                [
+                    {
+                        "role": "system",
+                        "content": (
+                            "You are a reliable educational exam "
+                            "generator. Return strict JSON only."
+                        ),
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt,
+                    },
+                ]
             )
 
-        document.add_paragraph()
+            if not isinstance(result, str):
+                result = str(result)
 
-    # Answer key page
-    document.add_page_break()
+            result = result.strip()
 
-    answer_title = document.add_paragraph()
-
-    answer_run = answer_title.add_run(
-        "ANSWER KEY"
-    )
-
-    answer_run.bold = True
-    answer_run.font.size = Pt(16)
-
-    for item in exam.answer_key:
-
-        paragraph = document.add_paragraph()
-
-        paragraph.add_run(
-            f"{item['number']}. {item['answer']}"
-        ).bold = True
-
-        if item.get("explanation"):
-
-            document.add_paragraph(
-                f"Explanation: {item['explanation']}"
+            result = re.sub(
+                r"^```json\s*",
+                "",
+                result,
+                flags=re.IGNORECASE,
             )
 
-    output = BytesIO()
+            result = re.sub(
+                r"^```\s*",
+                "",
+                result,
+            )
 
-    document.save(output)
+            result = re.sub(
+                r"\s*```$",
+                "",
+                result,
+            )
 
-    output.seek(0)
+            data = json.loads(result)
 
-    return StreamingResponse(
-        output,
-        media_type=(
-            "application/vnd.openxmlformats-officedocument."
-            "wordprocessingml.document"
+            questions = data.get("questions", [])
+
+            if len(questions) != batch_count:
+                raise ValueError(
+                    f"Expected {batch_count} questions "
+                    f"but received {len(questions)}."
+                )
+
+            # Normalize question numbers.
+            for index, question in enumerate(questions):
+                question["number"] = start_number + index
+
+            all_questions.extend(questions)
+
+        except json.JSONDecodeError as error:
+
+            print(
+                f"Exam JSON error in batch "
+                f"{start_number}-{end_number}:",
+                error,
+            )
+
+            raise HTTPException(
+                status_code=500,
+                detail=(
+                    f"Mak-AI returned invalid JSON "
+                    f"for questions {start_number}-{end_number}."
+                )
+            )
+
+        except Exception as error:
+
+            print(
+                f"Exam generation error in batch "
+                f"{start_number}-{end_number}:",
+                error,
+            )
+
+            raise HTTPException(
+                status_code=500,
+                detail=(
+                    f"Unable to generate questions "
+                    f"{start_number}-{end_number}."
+                )
+            )
+
+    if len(all_questions) != total_questions:
+        raise HTTPException(
+            status_code=500,
+            detail="Mak-AI did not generate the requested number of questions."
+        )
+
+    # Generate title/instructions locally instead of
+    # asking the LLM to repeat them in every batch.
+    title_match = re.search(
+        r"(?:about|on|for)\s+(.+?)(?:\s+with|\s+\d+\s*(?:items?|questions?)|$)",
+        request.prompt,
+        flags=re.IGNORECASE,
+    )
+
+    if title_match:
+        topic = title_match.group(1).strip()
+        exam_title = f"{topic.title()} Exam"
+
+    return {
+        "title": exam_title,
+        "instructions": (
+            "Read each question carefully and choose "
+            "the best answer. Mark only one answer "
+            "per question."
         ),
-        headers={
-            "Content-Disposition": (
-                'attachment; filename="Mak-AI-Exam.docx"'
-            )
-        },
-    )
+        "questions": all_questions,
+        "answer_key": [
+            {
+                "number": question.get(
+                    "number",
+                    index + 1,
+                ),
+                "answer": question.get(
+                    "answer",
+                    "",
+                ),
+                "explanation": question.get(
+                    "explanation",
+                    "",
+                ),
+            }
+            for index, question in enumerate(all_questions)
+        ],
+    }
