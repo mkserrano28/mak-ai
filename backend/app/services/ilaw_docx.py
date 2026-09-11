@@ -82,11 +82,6 @@ def generate_ilaw_docx(lesson_plan: dict) -> BytesIO:
         {},
     )
 
-    sessions = lesson_plan.get(
-        "sessions",
-        [],
-    )
-
     assessment = lesson_plan.get(
         "assessment",
         {},
@@ -147,7 +142,7 @@ def generate_ilaw_docx(lesson_plan: dict) -> BytesIO:
     )
 
     info_table = document.add_table(
-        rows=6,
+        rows=5,
         cols=2,
     )
 
@@ -175,17 +170,9 @@ def generate_ilaw_docx(lesson_plan: dict) -> BytesIO:
         ),
         (
             "No. of Sessions",
-            str(
-                info.get(
-                    "sessions",
-                    len(sessions),
-                )
-            ),
+            str(info.get("sessions", "")),
         ),
-        (
-            "Sessions",
-            "",
-        ),
+        
     ]
 
     for row_index, (label, value) in enumerate(
@@ -214,20 +201,11 @@ def generate_ilaw_docx(lesson_plan: dict) -> BytesIO:
             size=8,
         )
 
-        if label == "Sessions":
-
-            add_session_headers(
-                right,
-                sessions,
-            )
-
-        else:
-
-            set_cell_text(
-                right,
-                value,
-                size=9,
-            )
+        set_cell_text(
+            right,
+            value,
+            size=9,
+        )
 
         set_cell_width(
             left,
@@ -242,6 +220,55 @@ def generate_ilaw_docx(lesson_plan: dict) -> BytesIO:
     set_table_borders(
         info_table,
     )
+
+    # ========================================================
+    # SESSIONS
+    # ========================================================
+
+    session_items = lesson_plan.get("sessions", [])
+    session_count = len(session_items)
+
+    if session_count <= 0:
+        session_count = int(info.get("sessions", 0) or 0)
+
+    if session_count > 0:
+        sessions_table = document.add_table(
+            rows=1,
+            cols=session_count + 1,
+        )
+
+        sessions_table.alignment = WD_TABLE_ALIGNMENT.CENTER
+        sessions_table.autofit = False
+        set_table_width(sessions_table, 7.57)
+
+        # First cell: Sessions
+        cell = sessions_table.cell(0, 0)
+        shade_cell(cell, MEDIUM_GREEN)
+        set_cell_text(
+            cell,
+            "Sessions",
+            bold=True,
+            size=8,
+            align=WD_ALIGN_PARAGRAPH.CENTER,
+        )
+        set_cell_width(cell, 1.85)
+
+        # Remaining cells: Session 1 ... Session N
+        session_width = (7.57 - 1.85) / session_count
+
+        for index in range(session_count):
+            cell = sessions_table.cell(0, index + 1)
+            shade_cell(cell, MEDIUM_GREEN)
+            set_cell_text(
+                cell,
+                f"Session {index + 1}",
+                bold=True,
+                size=8,
+                align=WD_ALIGN_PARAGRAPH.CENTER,
+            )
+            set_cell_width(cell, session_width)
+
+        set_table_borders(sessions_table)
 
     # ========================================================
     # REFERENCES
@@ -704,216 +731,6 @@ def generate_ilaw_docx(lesson_plan: dict) -> BytesIO:
         integration_table,
     )
     # ========================================================
-    # LEARNING SESSIONS
-    # ========================================================
-
-    add_section_header(
-        document,
-        "LEARNING SESSIONS",
-    )
-
-    if not sessions:
-        sessions = []
-
-    for index, session in enumerate(sessions):
-
-        session_number = session.get(
-            "session_number",
-            index + 1,
-        )
-
-        # ----------------------------------------------------
-        # Keep each session together when possible
-        # ----------------------------------------------------
-
-        session_table = document.add_table(
-            rows=4,
-            cols=2,
-        )
-
-        session_table.alignment = (
-            WD_TABLE_ALIGNMENT.CENTER
-        )
-
-        session_table.autofit = False
-
-        # ----------------------------------------------------
-        # SESSION HEADER
-        # ----------------------------------------------------
-
-        header_left = session_table.cell(
-            0,
-            0,
-        )
-
-        header_right = session_table.cell(
-            0,
-            1,
-        )
-
-        shade_cell(
-            header_left,
-            MEDIUM_GREEN,
-        )
-
-        shade_cell(
-            header_right,
-            MEDIUM_GREEN,
-        )
-
-        set_cell_text(
-            header_left,
-            f"Session {session_number}",
-            bold=True,
-            size=8,
-        )
-
-        set_cell_text(
-            header_right,
-            session.get(
-                "topic",
-                "",
-            ),
-            bold=True,
-            size=8,
-        )
-
-        # ----------------------------------------------------
-        # LEARNING ACTIVITIES
-        # ----------------------------------------------------
-
-        activity_label = session_table.cell(
-            1,
-            0,
-        )
-
-        activity_value = session_table.cell(
-            1,
-            1,
-        )
-
-        shade_cell(
-            activity_label,
-            LIGHT_GREEN,
-        )
-
-        set_cell_text(
-            activity_label,
-            "Learning Activities",
-            bold=True,
-            size=7,
-        )
-
-        set_cell_text(
-            activity_value,
-            session.get(
-                "activities",
-                "",
-            ),
-            size=8,
-        )
-
-        # ----------------------------------------------------
-        # ASSESSMENT
-        # ----------------------------------------------------
-
-        assessment_label = session_table.cell(
-            2,
-            0,
-        )
-
-        assessment_value = session_table.cell(
-            2,
-            1,
-        )
-
-        shade_cell(
-            assessment_label,
-            LIGHT_GREEN,
-        )
-
-        set_cell_text(
-            assessment_label,
-            "Assessment",
-            bold=True,
-            size=7,
-        )
-
-        set_cell_text(
-            assessment_value,
-            session.get(
-                "assessment",
-                "",
-            ),
-            size=8,
-        )
-
-        # ----------------------------------------------------
-        # ADDITIONAL DETAILS
-        # ----------------------------------------------------
-
-        details_label = session_table.cell(
-            3,
-            0,
-        )
-
-        details_value = session_table.cell(
-            3,
-            1,
-        )
-
-        shade_cell(
-            details_label,
-            LIGHT_GREEN,
-        )
-
-        set_cell_text(
-            details_label,
-            "Additional Details",
-            bold=True,
-            size=7,
-        )
-
-        set_cell_text(
-            details_value,
-            session.get(
-                "details",
-                "",
-            ),
-            size=8,
-        )
-
-        # ----------------------------------------------------
-        # WIDTHS
-        # ----------------------------------------------------
-
-        for row in session_table.rows:
-
-            set_cell_width(
-                row.cells[0],
-                1.85,
-            )
-
-            set_cell_width(
-                row.cells[1],
-                5.72,
-            )
-
-        set_table_borders(
-            session_table,
-        )
-
-        # ----------------------------------------------------
-        # SPACE BETWEEN SESSIONS
-        # ----------------------------------------------------
-
-        if index < len(sessions) - 1:
-
-            paragraph = document.add_paragraph()
-
-            paragraph.paragraph_format.space_before = Pt(0)
-            paragraph.paragraph_format.space_after = Pt(2)
-    # ========================================================
     # A - ASSESSMENT
     # ========================================================
 
@@ -1004,7 +821,7 @@ def generate_ilaw_docx(lesson_plan: dict) -> BytesIO:
     )
 
     ways_table = document.add_table(
-        rows=3,
+        rows=2,
         cols=2,
     )
 
@@ -1017,30 +834,29 @@ def generate_ilaw_docx(lesson_plan: dict) -> BytesIO:
     ways_rows = [
         (
             "Extended Learning",
-            ways_forward.get(
-                "extended_learning",
-                "",
-            ),
+            "Opportunities",
+            "Suggest other learning experiences outside the "
+            "classroom/ class hours that learners may want to "
+            "access to reinforce what they have learned, to "
+            "spark their curiosities, or that may provide them "
+            "support in their areas of difficulty.",
         ),
         (
             "Reflections",
-            ways_forward.get(
-                "reflections",
-                "",
-            ),
-        ),
-        (
-            "Application",
-            ways_forward.get(
-                "application",
-                "",
-            ),
+            "",
+            "Think about what you need to change for the next "
+            "session based on what happened today. Is there "
+            "something the learners are interested in exploring? "
+            "Are there some things you would like to share with "
+            "your co-teachers, parents, or school leaders about "
+            "your classroom experience? What would you like your "
+            "instructional coach to help you with?\n\n"
+            "Reflections may be written in brief notes, bullets, "
+            "or annotations.",
         ),
     ]
 
-    for index, (label, value) in enumerate(
-        ways_rows
-    ):
+    for index, (label, sublabel, instruction) in enumerate(ways_rows):
 
         left = ways_table.cell(
             index,
@@ -1057,18 +873,36 @@ def generate_ilaw_docx(lesson_plan: dict) -> BytesIO:
             LIGHT_GREEN,
         )
 
-        set_cell_text(
-            left,
-            label,
-            bold=True,
-            size=8,
-        )
+        # Left column contains the official guidance.
+        left.text = ""
 
-        set_cell_text(
-            right,
-            value,
-            size=8,
-        )
+        paragraph = left.paragraphs[0]
+        paragraph.paragraph_format.space_after = Pt(0)
+
+        run = paragraph.add_run(label)
+        run.bold = True
+        run.font.name = "Arial"
+        run.font.size = Pt(9)
+
+        if sublabel:
+            p = left.add_paragraph()
+            p.paragraph_format.space_after = Pt(0)
+
+            run = p.add_run(sublabel)
+            run.bold = True
+            run.font.name = "Arial"
+            run.font.size = Pt(8)
+
+        p = left.add_paragraph()
+        p.paragraph_format.space_after = Pt(0)
+
+        run = p.add_run(instruction)
+        run.italic = True
+        run.font.name = "Arial"
+        run.font.size = Pt(7)
+
+        # Right column is intentionally blank for the teacher.
+        right.text = ""
 
         set_cell_width(
             left,
@@ -1079,6 +913,17 @@ def generate_ilaw_docx(lesson_plan: dict) -> BytesIO:
             right,
             5.72,
         )
+
+        # Give the teacher enough writing space in the right column.
+        row = ways_table.rows[index]
+        tr_pr = row._tr.get_or_add_trPr()
+        tr_height = OxmlElement("w:trHeight")
+        tr_height.set(
+            qn("w:val"),
+            "1100" if index == 0 else "1400",
+        )
+        tr_height.set(qn("w:hRule"), "atLeast")
+        tr_pr.append(tr_height)
 
     set_table_borders(
         ways_table,
@@ -1098,10 +943,7 @@ def generate_ilaw_docx(lesson_plan: dict) -> BytesIO:
         cols=3,
     )
 
-    sign_table.alignment = (
-        WD_TABLE_ALIGNMENT.CENTER
-    )
-
+    sign_table.alignment = WD_TABLE_ALIGNMENT.CENTER
     sign_table.autofit = False
 
     labels = [
@@ -1111,64 +953,67 @@ def generate_ilaw_docx(lesson_plan: dict) -> BytesIO:
     ]
 
     values = [
-        prepared.get(
-            "prepared_by",
-            "",
-        ),
-        prepared.get(
-            "checked_by",
-            "",
-        ),
-        prepared.get(
-            "noted_by",
-            "",
-        ),
+        prepared.get("prepared_by", ""),
+        prepared.get("checked_by", ""),
+        prepared.get("noted_by", ""),
+    ]
+
+    roles = [
+        "Teacher",
+        "Master Teacher / Head Teacher",
+        "School Principal",
     ]
 
     for column in range(3):
 
-        header = sign_table.cell(
-            0,
-            column,
-        )
+        header = sign_table.cell(0, column)
+        body = sign_table.cell(1, column)
 
-        body = sign_table.cell(
-            1,
-            column,
-        )
-
-        shade_cell(
-            header,
-            WHITE,
-        )
-
+        # Header row: white, bold label.
+        shade_cell(header, WHITE)
         set_cell_text(
             header,
             labels[column],
             bold=True,
-            size=8,
+            size=9,
         )
 
-        set_cell_text(
-            body,
-            values[column],
-            bold=True,
-            size=8,
-        )
+        # Body: name on top, role underneath.
+        body.text = ""
 
-        set_cell_width(
-            header,
-            2.52,
-        )
+        name_paragraph = body.paragraphs[0]
+        name_paragraph.paragraph_format.space_before = Pt(8)
+        name_paragraph.paragraph_format.space_after = Pt(2)
 
-        set_cell_width(
-            body,
-            2.52,
-        )
+        name_run = name_paragraph.add_run(values[column])
+        name_run.bold = True
+        name_run.font.name = "Arial"
+        name_run.font.size = Pt(9)
 
-    set_table_borders(
-        sign_table,
-    )
+        role_paragraph = body.add_paragraph()
+        role_paragraph.paragraph_format.space_before = Pt(0)
+        role_paragraph.paragraph_format.space_after = Pt(4)
+
+        role_run = role_paragraph.add_run(roles[column])
+        role_run.font.name = "Arial"
+        role_run.font.size = Pt(8)
+
+        # Equal three-column layout across the ILAW width.
+        set_cell_width(header, 2.52)
+        set_cell_width(body, 2.52)
+
+        header.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
+        body.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
+
+    # Give the signature/body row enough vertical space.
+    body_row = sign_table.rows[1]
+    tr_pr = body_row._tr.get_or_add_trPr()
+    tr_height = OxmlElement("w:trHeight")
+    tr_height.set(qn("w:val"), "1200")
+    tr_height.set(qn("w:hRule"), "atLeast")
+    tr_pr.append(tr_height)
+
+    set_table_borders(sign_table)
 
     # ========================================================
     # FINALIZE
@@ -1275,37 +1120,6 @@ def add_small_spacing(document):
     paragraph.paragraph_format.space_before = Pt(0)
 
 
-def add_session_headers(cell, sessions):
-
-    cell.text = ""
-
-    if not sessions:
-        return
-
-    paragraph = cell.paragraphs[0]
-    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    paragraph.paragraph_format.space_after = Pt(0)
-    paragraph.paragraph_format.space_before = Pt(0)
-
-    for index, session in enumerate(sessions):
-
-        if index > 0:
-            paragraph.add_run("     ")
-
-        run = paragraph.add_run(
-            f"Session {session.get('session_number', index + 1)}"
-        )
-
-        run.bold = True
-        run.font.name = "Arial"
-        run.font.size = Pt(7)
-
-    shade_cell(
-        cell,
-        MEDIUM_GREEN,
-    )
-
-
 def add_label_value(
     cell,
     label,
@@ -1356,10 +1170,10 @@ def add_list_label_value(
             style="List Bullet"
         )
 
-        bullet.paragraph_format.left_indent = (
-            Inches(0.15)
-        )
-
+        # Move bullet content slightly to the right so the
+        # bullet marker and text sit neatly inside the right column.
+        bullet.paragraph_format.left_indent = Inches(0.28)
+        bullet.paragraph_format.first_line_indent = Inches(-0.12)
         bullet.paragraph_format.space_after = Pt(0)
 
         run = bullet.add_run(

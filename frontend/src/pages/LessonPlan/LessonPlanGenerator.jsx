@@ -115,40 +115,6 @@ const mockLessonPlan = {
 
   // Keep these for now.
   // We will restructure the Sessions UI later.
-  sessions: [
-    {
-      session_number: 1,
-      topic: "Understanding the Human Person",
-      activities:
-        "Interactive discussion, concept mapping, and guided reflection.",
-      assessment:
-        "Short reflection activity about the learner's understanding of the human person.",
-    },
-    {
-      session_number: 2,
-      topic: "The Human Person and Society",
-      activities: "Group discussion and analysis of real-world situations.",
-      assessment: "Group presentation and reflection.",
-    },
-    {
-      session_number: 3,
-      topic: "Human Relationships",
-      activities: "Collaborative activity analyzing different relationships.",
-      assessment: "Written analysis of a given scenario.",
-    },
-    {
-      session_number: 4,
-      topic: "Philosophical Reflection",
-      activities: "Guided philosophical dialogue and individual reflection.",
-      assessment: "Reflection paper.",
-    },
-    {
-      session_number: 5,
-      topic: "Integration and Application",
-      activities: "Synthesis activity and classroom discussion.",
-      assessment: "Performance task and short assessment.",
-    },
-  ],
 };
 
 export default function LessonPlanGenerator() {

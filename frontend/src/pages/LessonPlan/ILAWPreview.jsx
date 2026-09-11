@@ -391,21 +391,6 @@ export default function ILAWPreview({ lessonPlan, onBack }) {
               title="Opportunities for Integration"
               content={plan.learning_experiences.opportunities_for_integration}
             />
-
-            <div className="mt-6 border-t border-white/10 pt-5">
-              <h3 className="mb-4 text-base font-medium text-white">
-                Sessions
-              </h3>
-              <div className="space-y-4">
-                {plan.sessions.map((session, index) => (
-                  <EditableSession
-                    key={session.session_number ?? index}
-                    session={session}
-                    onSave={(nextSession) => saveSession(index, nextSession)}
-                  />
-                ))}
-              </div>
-            </div>
           </ILAWSection>
 
           <ILAWSection
@@ -613,87 +598,6 @@ function ILAWSection({ title, children, editableValue, onSave }) {
         )}
       </div>
     </section>
-  );
-}
-
-function EditableSession({ session, onSave }) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [draft, setDraft] = useState(session);
-
-  useEffect(() => {
-    if (!isEditing) setDraft(session);
-  }, [session, isEditing]);
-
-  return (
-    <div className="rounded-xl border border-white/10 bg-[#0b0f19] p-4">
-      <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-base font-medium text-white">
-          Session {session.session_number}
-        </h3>
-        {!isEditing && (
-          <button
-            onClick={() => {
-              setDraft(session);
-              setIsEditing(true);
-            }}
-            className="rounded-lg px-3 py-1.5 text-xs text-gray-400 hover:bg-white/5 hover:text-white"
-          >
-            Edit
-          </button>
-        )}
-      </div>
-
-      {isEditing ? (
-        <div className="space-y-4">
-          <EditorField
-            label="Topic"
-            value={draft.topic}
-            onChange={(value) => setDraft({ ...draft, topic: value })}
-          />
-          <EditorField
-            label="Learning Activities"
-            value={draft.activities}
-            rows={6}
-            onChange={(value) => setDraft({ ...draft, activities: value })}
-          />
-          <EditorField
-            label="Assessment"
-            value={draft.assessment}
-            rows={5}
-            onChange={(value) => setDraft({ ...draft, assessment: value })}
-          />
-          <div className="flex justify-end gap-2">
-            <button
-              onClick={() => {
-                setDraft(session);
-                setIsEditing(false);
-              }}
-              className="rounded-lg border border-white/10 px-4 py-2 text-sm text-gray-400 hover:bg-white/5 hover:text-white"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={() => {
-                onSave(draft);
-                setIsEditing(false);
-              }}
-              className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-500"
-            >
-              Save
-            </button>
-          </div>
-        </div>
-      ) : (
-        <>
-          <ContentBlock title="Topic" content={session.topic} />
-          <ContentBlock
-            title="Learning Activities"
-            content={session.activities}
-          />
-          <ContentBlock title="Assessment" content={session.assessment} />
-        </>
-      )}
-    </div>
   );
 }
 

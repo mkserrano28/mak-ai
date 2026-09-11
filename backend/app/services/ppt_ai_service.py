@@ -1,4 +1,5 @@
 import json
+from json_repair import repair_json
 
 from app.services.llm import generate_response
 
@@ -299,10 +300,26 @@ END IMAGE SOURCES.
 
     try:
         presentation = json.loads(cleaned)
-    except json.JSONDecodeError as exc:
-        raise ValueError(
-            f"AI returned invalid PowerPoint JSON: {exc}"
-        )
+
+    except json.JSONDecodeError:
+        print(">>> Groq returned malformed JSON. Attempting automatic repair...")
+
+        try:
+            repaired = repair_json(cleaned)
+            presentation = json.loads(repaired)
+
+            print(">>> PowerPoint JSON repaired successfully.")
+
+        except Exception as repair_exc:
+            print(">>> PowerPoint JSON repair failed.")
+            print(f">>> Original JSON error: {repair_exc}")
+            print(">>> Raw Groq response:")
+            print(cleaned[:10000])
+
+            raise ValueError(
+                f"AI returned invalid PowerPoint JSON and automatic repair failed: "
+                f"{repair_exc}"
+            )
 
     if "title" not in presentation:
         raise ValueError("PowerPoint response is missing 'title'.")

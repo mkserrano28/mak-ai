@@ -10,7 +10,8 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+//const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const CONVERSION_OPTIONS = [
   {
@@ -34,6 +35,16 @@ const CONVERSION_OPTIONS = [
     description: "PPT / PPTX",
   },
 ];
+
+// Only enable conversions currently supported by the backend.
+const SUPPORTED_CONVERSIONS = {
+  pdf: ["docx", "txt"],
+  doc: ["pdf"],
+  docx: ["pdf"],
+  txt: ["pdf"],
+  ppt: ["pdf"],
+  pptx: ["pdf"],
+};
 
 function getExtension(filename = "") {
   const index = filename.lastIndexOf(".");
@@ -212,7 +223,7 @@ export default function FileConverter() {
           </h1>
 
           <p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-slate-500">
-            Convert between Word, PDF, Text, and PowerPoint.
+            Convert your file to a supported format.
           </p>
         </div>
 
@@ -278,13 +289,17 @@ export default function FileConverter() {
                 </p>
 
                 <p className="mt-1 text-xs text-slate-600">
-                  Choose Word, PDF, Text, or PowerPoint.
+                  Only supported conversion formats are available.
                 </p>
               </div>
 
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                 {CONVERSION_OPTIONS.map((item) => {
                   const active = targetFormat === item.format;
+
+                  // Disable conversions that the backend does not support.
+                  const supportedTargets =
+                    SUPPORTED_CONVERSIONS[inputFormat] || [];
 
                   // Treat DOC/DOCX as Word and PPT/PPTX as PowerPoint.
                   const sameFormat =
@@ -294,19 +309,24 @@ export default function FileConverter() {
                       ["ppt", "pptx"].includes(inputFormat)) ||
                     item.format === inputFormat;
 
+                  const supported = supportedTargets.includes(item.format);
+                  const disabled = sameFormat || !supported;
+
                   return (
                     <button
                       key={item.format}
                       type="button"
-                      disabled={sameFormat}
+                      disabled={disabled}
                       onClick={() => {
-                        setTargetFormat(item.format);
-                        setError("");
+                        if (!disabled) {
+                          setTargetFormat(item.format);
+                          setError("");
+                        }
                       }}
                       className={`rounded-xl border p-3 text-left transition ${
                         active
                           ? "border-violet-500/50 bg-violet-500/10"
-                          : sameFormat
+                          : disabled
                             ? "cursor-not-allowed border-white/[0.05] bg-white/[0.01] opacity-35"
                             : "border-white/[0.07] bg-white/[0.015] hover:border-violet-500/30 hover:bg-violet-500/[0.04]"
                       }`}

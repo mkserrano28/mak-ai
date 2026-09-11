@@ -102,7 +102,10 @@ def trim_messages(messages: list) -> list:
     return list(reversed(final_messages))
 
 
-def generate_response(messages: list) -> str:
+def generate_response(
+    messages: list,
+    response_format=None,
+) -> str:
     safe_messages = trim_messages(messages)
 
     print("=" * 60)
@@ -117,12 +120,17 @@ def generate_response(messages: list) -> str:
     )
     print("=" * 60)
 
-    response = client.chat.completions.create(
-        model=MODEL,
-        messages=safe_messages,
-        temperature=0.7,
-        stream=False,
-    )
+    kwargs = {
+        "model": MODEL,
+        "messages": safe_messages,
+        "temperature": 0.2,
+        "stream": False,
+    }
+
+    if response_format:
+        kwargs["response_format"] = response_format
+
+    response = client.chat.completions.create(**kwargs)
 
     return response.choices[0].message.content
 
@@ -161,7 +169,7 @@ def analyze_quiz_image(
 
         temperature=0,
 
-        max_completion_tokens=4096,
+        max_completion_tokens=900,
 
         stream=False,
 

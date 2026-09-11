@@ -4,19 +4,14 @@ import { useNavigate } from "react-router-dom";
 
 const subjects = [
   {
-    id: "science",
-    name: "Science",
-    icon: "🔬",
-  },
-  {
     id: "mathematics",
     name: "Mathematics",
     icon: "➗",
   },
   {
-    id: "ict",
-    name: "ICT & Programming",
-    icon: "💻",
+    id: "science",
+    name: "Science",
+    icon: "🔬",
   },
   {
     id: "english",
@@ -24,14 +19,39 @@ const subjects = [
     icon: "📚",
   },
   {
-    id: "general",
-    name: "General Knowledge",
-    icon: "🌎",
+    id: "filipino",
+    name: "Filipino",
+    icon: "🇵🇭",
   },
   {
-    id: "ai",
-    name: "AI & Technology",
-    icon: "🤖",
+    id: "araling-panlipunan",
+    name: "Araling Panlipunan",
+    icon: "🌏",
+  },
+  {
+    id: "ict",
+    name: "ICT & Programming",
+    icon: "💻",
+  },
+  {
+    id: "music",
+    name: "Music",
+    icon: "🎵",
+  },
+  {
+    id: "arts",
+    name: "Arts",
+    icon: "🎨",
+  },
+  {
+    id: "physical-education",
+    name: "Physical Education",
+    icon: "🏃",
+  },
+  {
+    id: "health",
+    name: "Health",
+    icon: "❤️",
   },
 ];
 
@@ -362,7 +382,7 @@ export default function Bamboozle() {
           <div className="text-center pt-10">
             <div className="text-6xl mb-5">🎮</div>
 
-            <h1 className="text-4xl font-bold">Mak-AI Bamboozle</h1>
+            <h1 className="text-4xl font-bold">IMac-Game</h1>
 
             <p className="text-slate-400 mt-3">
               Create a classroom team challenge
@@ -377,8 +397,8 @@ export default function Bamboozle() {
                 Select Grade
               </label>
 
-              <div className="grid grid-cols-3 gap-3">
-                {[10, 11, 12].map((value) => (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {[7, 8, 9, 10, 11, 12].map((value) => (
                   <button
                     key={value}
                     onClick={() => setGrade(String(value))}
@@ -674,7 +694,7 @@ export default function Bamboozle() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold">🎮 Mak-AI Bamboozle</h1>
+            <h1 className="text-3xl font-bold">🎮 IMac-Game</h1>
 
             <p className="text-slate-400 mt-1">
               Grade {grade} •{" "}
@@ -687,14 +707,14 @@ export default function Bamboozle() {
               onClick={backToSetup}
               className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition"
             >
-              ⚙️ Setup
+              Back
             </button>
 
             <button
               onClick={resetGame}
               className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition"
             >
-              🔄 New Game
+              New Game
             </button>
           </div>
         </div>

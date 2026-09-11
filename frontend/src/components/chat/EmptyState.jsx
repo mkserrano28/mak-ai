@@ -26,7 +26,7 @@ const actions = [
   },
   {
     icon: Gamepad2,
-    title: "Bamboozle",
+    title: "IMac-Game",
     description: "Classroom team challenge",
   },
   {
@@ -199,7 +199,7 @@ export default function EmptyState() {
                 if (item.title === "File Converter") {
                   navigate("/file-converter");
                 }
-                if (item.title === "Bamboozle") {
+                if (item.title === "IMac-Game") {
                   navigate("/bamboozle");
                 }
                 if (item.title === "Exam Generator") {

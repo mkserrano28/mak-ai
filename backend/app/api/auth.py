@@ -218,14 +218,14 @@ def resend_verification(
 
     db.commit()
 
-    # DEVELOPMENT ONLY
-    print(
-        f"New IMAC-AI verification code for {user.email}: "
-        f"{verification_code}"
+    # Send the new verification code by email
+    send_verification_email(
+        user.email,
+        verification_code,
     )
 
     return {
-        "message": "A new verification code has been generated."
+        "message": "A new verification code has been sent to your email."
     }
 
 class LoginRequest(BaseModel):

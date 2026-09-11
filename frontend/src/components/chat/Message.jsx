@@ -106,7 +106,7 @@ export default function Message({ message }) {
 
                 {message.powerpoint && (
                   <a
-                    href={`http://127.0.0.1:8000${message.powerpoint.download_url}`}
+                    href={`${import.meta.env.VITE_API_URL.replace(/\/api$/, "")}${message.powerpoint.download_url}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="

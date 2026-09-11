@@ -1,7 +1,9 @@
-const API_URL = "http://127.0.0.1:8000/api";
+//const API_URL = "http://127.0.0.1:8000/api";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 export async function generateBamboozleQuestions(grade, subject) {
-  const response = await fetch(`${API_URL}/bamboozle/generate`, {
+  const response = await fetch(`${API_URL}/api/bamboozle/generate`, {
     method: "POST",
 
     headers: {

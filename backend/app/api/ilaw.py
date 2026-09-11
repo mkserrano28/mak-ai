@@ -107,8 +107,9 @@ def modify_ilaw_plan(payload: dict):
 def export_ilaw_docx(
     lesson_plan: dict,
 ):
-
     try:
+        print(">>> USING CURRENT ILAW DOCX GENERATOR <<<")
+        print(">>> DOCX MODULE:", generate_ilaw_docx.__module__)
 
         docx_file = generate_ilaw_docx(
             lesson_plan
