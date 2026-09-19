@@ -102,7 +102,7 @@ export default function Bamboozle() {
       const data = await generateBamboozleQuestions(grade, subject);
 
       if (!data?.questions || data.questions.length < 20) {
-        throw new Error("Mak-AI did not generate enough questions.");
+        throw new Error("IMac-AI did not generate enough questions.");
       }
 
       setQuestions(data.questions.slice(0, 20));
@@ -549,8 +549,8 @@ export default function Bamboozle() {
               "
             >
               {loadingQuestions
-                ? "🤖 Mak-AI is creating your game..."
-                : "🎮 Start Bamboozle"}
+                ? " IMac-AI is creating your game..."
+                : " Start IMac-game"}
             </button>
 
             {generationError && (

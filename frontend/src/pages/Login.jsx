@@ -230,7 +230,7 @@ export default function Login() {
           </div>
 
           <h1 className="text-3xl font-bold tracking-tight text-white">
-            Mak-
+            IMac-
             <span
               className="
                 bg-gradient-to-r

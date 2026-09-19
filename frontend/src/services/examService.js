@@ -42,7 +42,7 @@ export async function downloadExam(exam) {
   const link = document.createElement("a");
 
   link.href = url;
-  link.download = "Mak-AI-Exam.docx";
+  link.download = "IMac-AI Exam.docx";
 
   document.body.appendChild(link);
 

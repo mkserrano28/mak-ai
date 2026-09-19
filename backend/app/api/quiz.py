@@ -55,7 +55,7 @@ async def create_answer_key(
 
         if not questions:
             raise ValueError(
-                "Mak-AI could not detect any questions."
+                "IMac-AI could not detect any questions."
             )
 
         return {
@@ -126,7 +126,7 @@ async def check_quiz(
 
         if not questions:
             raise ValueError(
-                "Mak-AI could not detect student answers."
+                "IMac-AI could not detect student answers."
             )
 
         return calculate_score(questions)

@@ -62,7 +62,7 @@ def create_message(
     db.refresh(message)
 
     # --------------------------------
-    # Run Mak-AI LangGraph
+    # Run IMac-AI LangGraph
     # --------------------------------
 
     state = {

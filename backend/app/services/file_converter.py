@@ -281,7 +281,7 @@ def _office_to_pdf(
     except requests.RequestException as exc:
 
         raise RuntimeError(
-            "Mak-AI could not connect to Gotenberg. "
+            "IMac-AI could not connect to Gotenberg. "
             "Make sure the Gotenberg Docker container "
             "is running."
         ) from exc

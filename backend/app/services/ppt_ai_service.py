@@ -127,7 +127,7 @@ def generate_presentation_content(
     slide_count: int = DEFAULT_SLIDE_COUNT,
 ) -> dict:
     """
-    Generate the educational content and visual structure for Mak-AI.
+    Generate the educational content and visual structure for IMac-AI.
 
     slide_count is the TOTAL number of PowerPoint slides, including the
     title/hero slide that is created by powerpoint_service.py.
@@ -152,7 +152,7 @@ def generate_presentation_content(
     )
 
     prompt = f"""
-You are the senior educational presentation designer for Mak-AI.
+You are the senior educational presentation designer for IMac-AI.
 
 Create a polished PowerPoint presentation from the research context below.
 

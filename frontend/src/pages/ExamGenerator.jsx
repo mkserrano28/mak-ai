@@ -85,7 +85,7 @@ export default function ExamGenerator() {
               <h1 className="text-3xl font-bold">Exam Generator</h1>
 
               <p className="text-slate-400 mt-1">
-                Create classroom-ready exams with Mak-AI
+                Create classroom-ready exams with IMac-AI
               </p>
             </div>
           </div>

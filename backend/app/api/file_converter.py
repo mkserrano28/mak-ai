@@ -84,7 +84,7 @@ async def convert(
 
         if target_format not in ALLOWED_FORMATS:
             raise ValueError(
-                "Mak-AI only supports conversion between "
+                "IMac-AI only supports conversion between "
                 "Word, PDF, TXT, and PowerPoint."
             )
 

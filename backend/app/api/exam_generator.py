@@ -58,7 +58,7 @@ async def generate_exam(request: ExamRequest):
     BATCH_SIZE = 10
 
     all_questions = []
-    exam_title = "Mak-AI Generated Exam"
+    exam_title = "IMac-AI Generated Exam"
     exam_instructions = "Choose the best answer."
 
     for batch_start in range(0, total_questions, BATCH_SIZE):
@@ -72,7 +72,7 @@ async def generate_exam(request: ExamRequest):
         end_number = batch_start + batch_count
 
         prompt = f"""
-You are Mak-AI, an educational exam generator.
+You are IMac-AI, an educational exam generator.
 
 Create questions {start_number} through {end_number}
 of an exam based on this teacher request:
@@ -198,7 +198,7 @@ Do not add text outside the JSON.
             raise HTTPException(
                 status_code=500,
                 detail=(
-                    f"Mak-AI returned invalid JSON "
+                    f"IMac-AI returned invalid JSON "
                     f"for questions {start_number}-{end_number}."
                 )
             )
@@ -222,7 +222,7 @@ Do not add text outside the JSON.
     if len(all_questions) != total_questions:
         raise HTTPException(
             status_code=500,
-            detail="Mak-AI did not generate the requested number of questions."
+            detail="IMac-AI did not generate the requested number of questions."
         )
 
     # Generate title/instructions locally instead of
@@ -351,7 +351,7 @@ async def download_exam(exam: ExamResponse):
         ),
         headers={
             "Content-Disposition": (
-                'attachment; filename="Mak-AI-Exam.docx"'
+                'attachment; filename="IMac-AI-Exam.docx"'
             )
         },
     )

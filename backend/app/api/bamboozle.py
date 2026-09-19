@@ -29,7 +29,7 @@ class BamboozleResponse(BaseModel):
 async def generate_bamboozle(request: BamboozleRequest):
 
     prompt = f"""
-You are Mak-AI, an educational AI assistant.
+You are IMac-AI, an educational AI assistant.
 
 Generate exactly 20 high-quality Bamboozle questions.
 
@@ -168,7 +168,7 @@ Do not include any text before or after the JSON.
 
         raise HTTPException(
             status_code=500,
-            detail="Mak-AI returned an invalid question format.",
+            detail="IMac-AI returned an invalid question format.",
         )
 
     except Exception as error:

@@ -108,7 +108,7 @@ export default function QuizChecker() {
        * Build the manual answer key.
        *
        * The teacher's answers are the source of truth.
-       * Mak-AI only reads the student's answers.
+       * IMac-AI only reads the student's answers.
        */
       const answerKey = {};
 
@@ -216,7 +216,7 @@ export default function QuizChecker() {
           "
           >
             <ClipboardCheck size={14} />
-            Mak-AI Education
+            IMac-AI Education
           </div>
 
           <h1
@@ -240,7 +240,7 @@ export default function QuizChecker() {
           "
           >
             Enter the correct answers, upload the student's completed paper, and
-            let Mak-AI check the quiz automatically.
+            let IMac-AI check the quiz automatically.
           </p>
         </header>
 
@@ -496,7 +496,7 @@ export default function QuizChecker() {
                 onClick={checkStudentQuiz}
                 disabled={!studentImage || loading}
                 loading={loading}
-                loadingText="Mak-AI is checking the quiz..."
+                loadingText="IMac-AI is checking the quiz..."
                 icon={<ClipboardCheck size={17} />}
               >
                 Check Quiz

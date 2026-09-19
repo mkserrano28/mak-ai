@@ -593,7 +593,7 @@ def create_powerpoint(title, slides, theme=None, images=None):
     prs.slide_width = SW
     prs.slide_height = SH
 
-    # Intentional visual rhythm matching the Mak-AI reference:
+    # Intentional visual rhythm matching the IMac-AI reference:
     # dark / light / dark / light ... rather than random backgrounds.
     used_urls = set()
     hero(prs, title, theme, images, used_urls)
