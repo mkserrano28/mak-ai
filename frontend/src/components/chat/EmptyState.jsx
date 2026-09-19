@@ -11,27 +11,27 @@ import { useNavigate } from "react-router-dom";
 const actions = [
   {
     icon: BookOpen,
-    title: "Lesson Planner",
+    title: "ILAW Lesson Plan Generation",
     description: "Create ILAW lesson plans",
   },
   {
     icon: ClipboardCheck,
-    title: "Quiz Checker",
+    title: "Quiz/Exam Checking",
     description: "Check student quiz papers",
   },
   {
     icon: FileOutput,
-    title: "File Converter",
+    title: "Word/PDF Resources",
     description: "Convert documents and files",
   },
   {
     icon: Gamepad2,
-    title: "IMac-Game",
+    title: "Games & Energizers",
     description: "Classroom team challenge",
   },
   {
     icon: FileText,
-    title: "Exam Generator",
+    title: "Assessment Generation",
     description: "Create exams and download Word files",
   },
 ];
@@ -189,20 +189,20 @@ export default function EmptyState() {
               type="button"
               key={item.title}
               onClick={() => {
-                if (item.title === "Lesson Planner") {
+                if (item.title === "ILAW Lesson Plan Generation") {
                   navigate("/lesson-plan");
                 }
 
-                if (item.title === "Quiz Checker") {
+                if (item.title === "Quiz/Exam Checking") {
                   navigate("/quiz-checker");
                 }
-                if (item.title === "File Converter") {
+                if (item.title === "Word/PDF Resources") {
                   navigate("/file-converter");
                 }
-                if (item.title === "IMac-Game") {
+                if (item.title === "Games & Energizers") {
                   navigate("/bamboozle");
                 }
-                if (item.title === "Exam Generator") {
+                if (item.title === "Assessment Generation") {
                   navigate("/exam-generator");
                 }
               }}

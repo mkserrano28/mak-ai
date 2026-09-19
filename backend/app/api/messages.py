@@ -105,7 +105,7 @@ def create_message(
     }
 
     print("================================")
-    print("RUNNING MAK-AI LANGGRAPH")
+    print("RUNNING IMAC-AI LANGGRAPH")
     print("================================")
 
     result = graph.invoke(state)

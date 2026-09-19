@@ -365,7 +365,7 @@ def hero(prs, title, theme, images, used_urls=None):
     circle(s, Inches(9.55), Inches(6.15), Inches(0.38), c["blue"])
     circle(s, Inches(8.8), Inches(6.0), Inches(0.55), c["orange"])
 
-    text(s, "MAK-AI", Inches(0.7), Inches(0.55),
+    text(s, "IMAC-AI", Inches(0.7), Inches(0.55),
          Inches(2), Inches(0.3), 14, c["white"], True)
 
     # Use a large, clean photographic image.
@@ -579,7 +579,7 @@ def conclusion(s, data, c, n, images, used_urls=None):
     circle(s, Inches(10.2), Inches(5.75), Inches(0.85), c["blue"])
     circle(s, Inches(11.35), Inches(6.0), Inches(0.48), c["orange"])
 
-    text(s, "MAK-AI  |  Thank You!", Inches(0.75), Inches(6.7),
+    text(s, "IMAC-AI  |  Thank You!", Inches(0.75), Inches(6.7),
          Inches(3.5), Inches(0.3), 11, c["muted"])
 
 
