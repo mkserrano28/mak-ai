@@ -3,3 +3,5 @@ venv/
 __pycache__/
 *.pyc
 backend/generated_files/
+
+n8n_data/
